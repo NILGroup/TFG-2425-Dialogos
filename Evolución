@@ -1,0 +1,2 @@
+Semana 18-11-2014
+  - He estado probando distintos modelos pero mi GPU al no ser muy buena finalmente he optado por usar Google Colab con el modelo de Llama 3.1-8B-Instruct. Aun así para que funcione mejor he tenido que usar cuantización de 4bits
