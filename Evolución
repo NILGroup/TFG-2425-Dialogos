@@ -1,4 +1,11 @@
-Semana 18-11-2014
+Semana 18-11-2024
   - He estado probando distintos modelos pero mi GPU al no ser muy buena finalmente he optado por usar Google Colab con el modelo de Llama 3.1-8B-Instruct. Aun así para que funcione mejor he tenido que usar cuantización de 4bits
   - Subo el notebook del modelo
   - He estado haciendo la parte inicial de la memoria Estado de la Cuestión.
+
+Semana 12-12-2024
+  - El chatbot ya funciona
+  - Para cargar el dataset uso el parametro streaming=True lo que me permite trabajar con el conjunto de datos sin tener que descargarlo. Los datos se transmiten a medida que se itera a través del conjunto de datos.
+    Esto me permite no tener que esperar todo el tiempo que necesitaba para descargarlo, al usar google colab no excederme del espacio disponible y si quiero explorar unas pocas muestras de prueba es mucho más rápido.
+    (https://huggingface.co/docs/datasets/stream)
+  - He visto algunos papers y TFG en google schoolar que son interesantes y me pueden dar ideas https://riunet.upv.es/handle/10251/208780  https://riull.ull.es/xmlui/handle/915/33010  https://arxiv.org/abs/2402.18013
