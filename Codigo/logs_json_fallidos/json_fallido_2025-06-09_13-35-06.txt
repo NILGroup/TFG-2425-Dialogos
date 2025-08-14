@@ -1,0 +1,23 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "descripcion_de_mundo",
+    "Nombre_del_mundo": "Tierra de las Sombras y las Luminarias",
+    "Geografia_y_formacion": [
+        "La Llanura de la Luz Eterna: Una extensa llanura iluminada por un sol perpetuo, donde se encuentran las ruinas de antiguas civilizaciones y los primeros indicios de la existencia de la Llama del Horizonte.",
+        "El Bosque de las Sombras Susurrantes: Un bosque misterioso y peligroso, habitado por criaturas sobrenaturales y lleno de secretos ocultos.",
+        "La Cordillera de los Vientos Helados: Una imponente montaña cubierta de nieve y hielo, donde se esconden antiguos templos y fragmentos de la Llama.",
+        "El Desierto de las Arenas Ardientes: Un desierto implacable, donde el calor y las arenas movedizas esconden tesoros y peligros."
+    ],
+    "Ambientacion_y_tecnologia": "El mundo se encuentra en un equilibrio frágil entre la luz y las tinieblas, sostenido por la presencia de la Llama del Horizonte. La tecnología es similar a la de una época medieval avanzada, con influencias mágicas que permiten la creación de armas, armaduras y herramientas mejoradas. La magia está profundamente ligada a la Llama, y solo aquellos que tienen una conexión especial con ella pueden manipular sus poderes. La organización *La Sombra del Viento* busca explotar esta magia para sus propios fines, mientras que los héroes de la historia luchan por preservar el equilibrio.",
+    "Historia_y_trasfondo": "El mundo fue creado por dioses que lucharon entre sí por el control del poder divino. La Llama del Horizonte fue forjada como un símbolo de su pacto final, un recordatorio de que el poder debe ser equilibrado. Sin embargo, con el paso del tiempo, la humanidad olvidó este pacto, y la Llama fue robada, llevando al mundo al borde del caos.",
+    "Informacion_adicional": [
+        "La Llama del Horizonte se divide en cinco fragmentos, cada uno escondido en una de las regiones del mundo.",
+        "Las criaturas mitológicas que habitan el mundo son resultado de la corrupción de la magia de la Llama.",
+        "La organización *La Sombra del Viento* tiene su base secreta en un lugar desconocido, pero se rumorea que está cerca del Desierto de las Arenas Ardientes."
+    ]
+}
+```

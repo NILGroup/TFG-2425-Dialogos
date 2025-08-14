@@ -1,0 +1,12 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+¡Los personajes están muy bien desarrollados! Cada uno tiene un perfil interesante y con historias y relaciones que pueden generar mucha tensión y drama en la trama. Me gustaría ver cómo se desarrollan estas relaciones a lo largo de la historia.
+
+Si quieres, podemos:
+1. Modificar algo de los personajes actuales
+2. Añadir nuevos personajes
+3. Pasar a definir la **Descripción del mundo**, **Descripción de escenarios** o **Estructura de capítulos**
+
+¿Te gustaría proseguir con algo en particular? 😊

@@ -1,0 +1,11 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "descripcion_de_mundo",
+    "Nombre": "Tenria",
+    "Descripcion": "Tenria es un mundo antiguo, formado a partir de la unión de cinco fragmentos divinos que los dioses antiguos dejaron como herencia. Estos fragmentos, conocidos como Los Corazones de los Dioses, dieron origen a cinco regiones principales, cada una con su propia geografía, clima y cultura. Tenria fue creada hace más de mil años, cuando los dioses, en su sabiduría, decidieron retirarse del plano mortal. Antes de partir, escondieron sus tesoros más valiosos en diferentes rincones del mundo, creando mazmorras y pruebas para protegerlos. Las regiones principales son: La Llanura de los Vientos Eternos, El Bosque de las Sombras Eternas, Las Montañas de Fuego, El Mar de las Estrellas y La Tierra de la Nada. Cada región está asociada con un dios y un tipo de magia. La tecnología en Tenria es limitada, y la mayoría de las ciudades dependen de la magia para subsistir. La magia se divide en cinco tipos, cada uno relacionado con un dios. Después de que los dioses abandonaron el mundo, la humanidad se dividió en reinos y ciudades-estado que luchan por el control de los tesoros. El caos se apodera del mundo, y los héroes deben unirse para evitar que los tesoros caigan en manos equivocadas. El mundo de Tenria está lleno de leyendas y mitos sobre los dioses y sus tesoros. Cada región tiene sus propias historias y culturas, y el pueblo vive con la esperanza de que un día los dioses regresen."
+}
+```

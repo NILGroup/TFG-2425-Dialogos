@@ -1,0 +1,59 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "PERSONAJES PRINCIPALES",
+    "Personajes": [
+        {
+            "Nombre": "Eryndor Thalisen",
+            "Rol": "Protagonista / El Elegido",
+            "Edad": "25 años",
+            "Sexo": "Masculino",
+            "Personalidad": "Eryndor es un joven determinado y valiente, aunque cargado de dudas y miedos. Tiene un fuerte sentido de justicia y una conexión especial con la naturaleza, lo que lo lleva a ser compasivo y protector. Sin embargo, su pasado marcado por la culpa lo hace introspectivo y a veces indeciso.",
+            "Descripcion": "Alto, complexión atlética, ojos verdes brillantes y cabello castaño oscuro. Lleva una marca en forma de hoja en su mano izquierda, un tatuaje que señala su conexión con el Guardian. Viste de cuero marrón y lleva un arco y una espada a su lado.",
+            "Historia": "Creció en un pequeño pueblo al borde de un bosque sagrado. Su familia fue asesinada durante un ataque de 'La Sombra' cuando era niño, y él fue el único sobreviviente. Fue encontrado por Lila Earthsong, quien lo entrenó en el camino de la naturaleza y le enseñó a controlar sus habilidades.",
+            "Desarrollo": "A lo largo de la historia, Eryndor aprenderá a aceptar su pasado y a confiar en los demás. Su mayor desafío será entender el verdadero significado del sacrificio y asumir su papel como el portador del Guardian.",
+            "Relaciones": "Es cercano a Lila, a quien considera una figura maternal. Tiene una relación tensa con Malakar, debido a su pasado. Se siente atraído por Aria, aunque su relación será complicada por sus respectivos secretos.",
+            "Informacion_adicional": "Tiene la habilidad de comunicarse con los espíritus de la naturaleza, una habilidad que se fortalecerá conforme avance la historia."
+        },
+        {
+            "Nombre": "Lila Earthsong",
+            "Rol": "Mentor / Guía espiritual",
+            "Edad": "62 años",
+            "Sexo": "Femenino",
+            "Personalidad": "Lila es sabia, tranquila y con una gran conexión espiritual. Es paciente y tierna, pero también puede ser firme cuando la situación lo requiere. Tiene un gran conocimiento sobre el mundo y el Guardian.",
+            "Descripcion": "Baja estatura, delgada, con cabello gris largo y ojos marrones cálidos. Viste ropas de colores terrosos y lleva un bastón decorado con símbolos de la naturaleza.",
+            "Historia": "Fue una poderosa druida en su juventud, pero un evento trágico la llevó a retirarse del mundo. Ha dedicado su vida a proteger el bosque sagrado y a entrenar a aquellos que puedan ser los elegidos para portar el Guardian.",
+            "Desarrollo": "Aunque no es una guerrera, su sabiduría y conocimiento serán clave en la misión. Deberá enfrentar sus propios miedos y aceptar que su tiempo en este mundo se acaba.",
+            "Relaciones": "Es como una madre para Eryndor, a quien ha entrenado y protegido durante años. Tiene respeto por Aria, aunque desconfía de sus intenciones. Conoce el pasado de Malakar y siente tristeza por lo que se ha convertido.",
+            "Informacion_adicional": "Puede comunicarse con los espíritus de la naturaleza y tiene un conocimiento profundo sobre el Guardian y su historia."
+        },
+        {
+            "Nombre": "Malakar Darkshadow",
+            "Rol": "Antagonista principal",
+            "Edad": "40 años",
+            "Sexo": "Masculino",
+            "Personalidad": "Malakar es frío, calculador y ambicioso. Tiene un pasado marcado por la traición y el dolor, lo que lo ha convertido en una persona sin escrúpulos. Cree firmemente que el fin justifica los medios y está dispuesto a sacrificar todo por su causa.",
+            "Descripcion": "Alto, complexión imponente, ojos azules fríos y cabello negro. Viste una armadura oscura con el símbolo de 'La Sombra' grabado en el pecho.",
+            "Historia": "Fue un héroe de guerra que luchó por su reino, pero fue traicionado por sus propios compañeros. Buscando venganza, se unió a 'La Sombra' y ascendió rápidamente en sus filas. Ahora lidera la organización y busca usar el Guardian para imponer su propio orden en el mundo.",
+            "Desarrollo": "A lo largo de la historia, se revelarán los motivos detrás de su traición y su verdadera conexión con Eryndor. Su mayor desafío será elegir entre su ambición y la redención.",
+            "Relaciones": "Es el enemigo principal de Eryndor, a quien culpa por su caída. Tiene una relación complicada con Lila, quien lo considera un traidor. Confía en Aria, aunque no está seguro de su lealtad.",
+            "Informacion_adicional": "Tiene una herida en el pecho que nunca sanó por completo, un recordatorio constante de su pasado."
+        },
+        {
+            "Nombre": "Aria Moonwhisper",
+            "Rol": "Secundario / Interés romántico",
+            "Edad": "22 años",
+            "Sexo": "Femenino",
+            "Personalidad": "Aria es ágil, astuta y misteriosa. Es una luchadora formidable, pero también tiene un lado vulnerable que oculta bajo una capa de sarcasmo y desconfianza. Le cuesta confiar en los demás, pero una vez que lo hace, es leal hasta la muerte.",
+            "Descripcion": "Baja estatura, complexión delgada, ojos grises y cabello plateado corto. Tiene una cicatriz en la mejilla izquierda y viste de negro, con una capa que la hace casi invisible en la oscuridad.",
+            "Historia": "Creció en las calles de una ciudad grande, donde tuvo que luchar por sobrevivir. Fue capturada por 'La Sombra' y obligada a unirse a sus filas, pero logró escapar y ahora busca venganza.",
+            "Desarrollo": "Aria aprenderá a enfrentar su pasado y a confiar en los demás. Su mayor desafío será decidir entre su deseo de venganza y su creciente conexión con Eryndor.",
+            "Relaciones": "Se siente atraída por Eryndor, pero su pasado la hace desconfiar del amor. Tiene una relación tensa con Lila, quien ve en ella un potencial que Aria no está dispuesta a aceptar. Desconfía de Malakar, aunque no sabe que él es el responsable de su captura.",
+            "Informacion_adicional": "Es una experta en sigilo y espionaje, habilidades que serán clave en la misión."
+        }
+    ]
+}
+```

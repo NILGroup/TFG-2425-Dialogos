@@ -1,0 +1,33 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting property name enclosed in double quotes: line 11 column 5 (char 903)
+
+🧾 TEXTO RECIBIDO:
+{
+"Seccion": "descripcion_de_escenarios",
+"Escenarios": [
+    {
+    "Nombre": "Estadio Olímpico de Ciudad de México",
+    "Localización": "Ciudad de México, México",
+    "Descripción": "El estadio olímpico es un lugar emblemático donde se desarrollan los eventos más importantes de los Juegos Olímpicos. Con una capacidad para 60,000 espectadores, el estadio es un lugar impresionante donde los atletas dan todo de sí para alcanzar la gloria.",
+    "Importancia en la historia": "Es el lugar donde se desarrolla la final de los 100 metros lisos, el evento más importante de la historia de Alex.",
+    "Historia y trasfondo": "El estadio olímpico ha sido testigo de muchos eventos históricos en la historia del atletismo, y es considerado un lugar sagrado para los atletas que compiten aquí.",
+    "Eventos importantes": ["La final de los 100 metros lisos donde Alex se enfrenta a su mayor rival."],
+    },
+    {
+    "Nombre": "La casa de Alex",
+    "Localización": "Ciudad natal de Alex, Estados Unidos",
+    "Descripción": "La casa de Alex es un lugar cálido y acogedor donde Alex se siente seguro y rodeado de su familia y amigos. Es un lugar donde Alex puede relajarse y ser él mismo.",
+    "Importancia en la historia": "Es el lugar donde Alex se enfrenta a sus propias debilidades y donde comienza a creer en sí mismo.",
+    "Historia y trasfondo": "La casa de Alex ha sido un lugar de refugio para él desde que era niño, y es donde ha crecido y se ha desarrollado como atleta.",
+    "Eventos importantes": ["La conversación con su entrenador donde se le dice que no está listo para competir a nivel olímpico."],
+    },
+    {
+    "Nombre": "El gimnasio de entrenamiento",
+    "Localización": "Ciudad natal de Alex, Estados Unidos",
+    "Descripción": "El gimnasio de entrenamiento es un lugar donde Alex puede entrenar y mejorar sus habilidades como atleta. Es un lugar intensivo y dinámico donde Alex puede pushar sus límites físicos y mentales.",
+    "Importancia en la historia": "Es el lugar donde Alex comienza a entrenar con un nuevo entrenador que le ayuda a superar sus debilidades y a creer en sí mismo.",
+    "Historia y trasfondo": "El gimnasio de entrenamiento ha sido un lugar clave en la carrera de Alex como atleta, y es donde ha pasado horas y horas entrenando y mejorando sus habilidades.",
+    "Eventos importantes": ["La primera sesión de entrenamiento con su nuevo entrenador."],
+    }
+]
+}

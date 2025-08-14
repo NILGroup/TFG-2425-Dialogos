@@ -1,0 +1,7 @@
+flet==0.28.3
+flet_route==0.3.3
+groq==0.31.0
+pymongo==4.14.0
+pyperclip==1.9.0
+thread==2.0.5
+transformers==4.46.2

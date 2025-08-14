@@ -1,0 +1,56 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Extra data: line 14 column 1 (char 1396)
+
+🧾 TEXTO RECIBIDO:
+{
+    "Seccion": "DESCRIPCION DE ESCENARIOS",
+    "Nombre": "La Luminaria",
+    "Localización": "Isla principal del archipiélago, ubicada en el centro.",
+    "Descripción": "La Luminaria es la isla de la luz y la esperanza. Su paisaje está dominado por colinas verdes, campos de trigo dorado y bosques iluminados por una luz suave que parece emanar del propio suelo. El cielo siempre está despejado, y las estrellas brillan con intensidad durante la noche. El faro de la isla, conocido como *La Torre de la Luz*, es un hito imponente que guía a los marineros.",
+    "Importancia en la historia": "Es el hogar de Eryndor y el punto de partida de su aventura. Aquí se encuentran las ruinas de la antigua civilización que guardaba el secreto del *Ojo del Cielo*.",
+    "Historia y trasfondo": "La Luminaria fue fundada por los primeros guardianes del *Ojo del Cielo*, quienes construyeron la Torre de la Luz para proteger el artefacto. Después de la Gran Oscuridad, la isla se convirtió en refugio para los supervivientes.",
+    "Eventos importantes": [
+        "Eryndor descubre el mapa antiguo que lo lleva en busca del *Ojo del Cielo*.",
+        "La partida de Eryndor y su encuentro con sus primeros aliados."
+    ],
+    "Información adicional": "La isla está protegida por un Guardián conocido como *El Luminoso*, una criatura de luz pura que solo se manifiesta en momentos de gran peligro."
+}
+{
+    "Seccion": "DESCRIPCION DE ESCENARIOS",
+    "Nombre": "La Sombra Eterna",
+    "Localización": "Al noroeste del archipiélago, conocida por sus aguas oscuras y niebla perpetua.",
+    "Descripción": "La Sombra Eterna es una isla de misterio y oscuridad. Sus bosques son densos y tenebrosos, y sus montañas están cubiertas de niebla. La luz del sol nunca alcanza el suelo, y las noches son eternas. Los edificios de la isla son de piedra oscura y están cubiertos de musgo.",
+    "Importancia en la historia": "Es el hogar de Lirien y el clan Dusk. Aquí se encuentran las ruinas de un antiguo templo donde se guardan secretos sobre la maldición que causó la Gran Oscuridad.",
+    "Historia y trasfondo": "La Sombra Eterna fue fundada por un clan de guerreros que buscaban dominar la oscuridad. Después de la Gran Oscuridad, la isla se convirtió en un lugar de refugio para aquellos que buscan poder en las sombras.",
+    "Eventos importantes": [
+        "Eryndor y su grupo enfrentan su primera prueba en el templo oscuro.",
+        "Lirien revela su verdadera lealtad al grupo."
+    ],
+    "Información adicional": "La isla está protegida por un Guardián conocido como *La Sombra Viviente*, una criatura que puede tomar la forma de cualquier ser."
+}
+{
+    "Seccion": "DESCRIPCION DE ESCENARIOS",
+    "Nombre": "El Jardín de los Dioses",
+    "Localización": "Al sureste del archipiélago, rodeada de aguas cristalinas y arrecifes de coral.",
+    "Descripción": "El Jardín de los Dioses es una isla de gran belleza natural. Sus bosques están llenos de flores que florecen en todos los colores del arcoíris, y sus ríos son de agua cristalina. La isla está llena de ruinas antiguas cubiertas de enredaderas y flores silvestres. El clima es cálido y húmedo, y el aire está lleno de vida.",
+    "Importancia en la historia": "Es el hogar de Mira y el clan Verdant. Aquí se encuentran los jardines sagrados donde se dice que nació la magia de la naturaleza.",
+    "Historia y trasfondo": "El Jardín de los Dioses fue el primer lugar habitado por los dioses antes de que abandonaran el mundo. Después de la Gran Oscuridad, la isla se convirtió en un lugar de peregrinación para aquellos que buscan restaurar el equilibrio de la naturaleza.",
+    "Eventos importantes": [
+        "El grupo descubre el secreto de la magia de Mira.",
+        "Un encuentro con criaturas mágicas que protegen los jardines sagrados."
+    ],
+    "Información adicional": "La isla está protegida por un Guardián conocido como *La Madre de la Vida*, una criatura que puede controlar la naturaleza."
+}
+{
+    "Seccion": "DESCRIPCION DE ESCENARIOS",
+    "Nombre": "El Santuario del Cielo",
+    "Localización": "En el extremo norte del archipiélago, rodeada de aguas heladas y montañas nevadas.",
+    "Descripción": "El Santuario del Cielo es una isla de gran belleza y peligro. Sus montañas están cubiertas de nieve perpetua, y sus valles están llenos de ríos de hielo. El clima es frío y ventoso, y el cielo está siempre cubierto de nubes oscuras. En el centro de la isla se encuentra el Templo del Cielo, un edificio de mármol blanco que brilla incluso en la oscuridad.",
+    "Importancia en la historia": "Es el lugar donde se encuentra el *Ojo del Cielo*. Aquí se resuelve el conflicto final de la historia.",
+    "Historia y trasfondo": "El Santuario del Cielo fue construido por los dioses como un lugar sagrado para guardar el *Ojo del Cielo*. Después de la Gran Oscuridad, la isla se convirtió en un lugar de peregrinación para aquellos que buscan restaurar el equilibrio del mundo.",
+    "Eventos importantes": [
+        "El grupo enfrenta al verdadero enemigo y a los guardias del templo.",
+        "Eryndor debe tomar la decisión final sobre el uso del *Ojo del Cielo*."
+    ],
+    "Información adicional": "La isla está protegida por un Guardián conocido como *El Ángel del Cielo*, una criatura alada de gran poder."
+}

@@ -1,0 +1,27 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "TRAMA E HILO SIMBOLICO",
+    "Titulo": "La Leyenda del Guardián de las Estrellas",
+    "Genero": "Aventuras",
+    "Trama": "En un mundo donde las estrellas han dejado de brillar, un joven llamado Elian descubre que es el elegido para restaurar la luz celeste. Armado con un misterioso artefacto y guiado por un sabio mentor, Elian emprende un viaje épico para recuperar la *Estrella de la Luz*, un relicario capaz de devolver el esplendor a los cielos. Sin embargo, un oscuro mago llamado Malakar busca apoderarse del artefacto para sumir al mundo en las tinieblas eternas. La trama se entrelaza con subtramas de traiciones, alianzas inesperadas y secretos familiares que desafían las creencias de Elian sobre su origen y destino.",
+    "Estructura_de_la_trama": {
+        "Planteamiento": "Presentación del mundo sin estrellas y la vida de Elian, un joven huérfano con un misterioso tatuaje celestial en la mano. Un grupo de sabios le revela que es el descendiente de una antigua raza de guardianes estelares y que debe encontrar la *Estrella de la Luz*.",
+        "Nudo": "Elian comienza su viaje, enfrentando pruebas y enigmas que lo llevan a diferentes regiones del mundo. Se une a un grupo de aliados: una guerrera valiente, un ladrón astuto y un sabio anciano que lo guía. Malakar, el antagonista, roba la *Estrella de la Luz* y la usa para comenzar a extinguir las estrellas una por una.",
+        "Desenlace": "Elian y sus aliados infiltran la fortaleza de Malakar en la *Torre de la Obsidiana*. En un enfrentamiento épico, Elian descubre que su tatuaje es la clave para restaurar la *Estrella de la Luz*. La luz triunfa sobre la oscuridad, las estrellas regresan, y Elian se convierte en el nuevo Guardián de las Estrellas."
+    },
+    "Subtramas_y_giros_importantes": [
+        "La traición de un aliado: Uno de los compañeros de Elian se revela como un espía al servicio de Malakar.",
+        "El secreto de los guardianes: Elian descubre que su familia fue asesinada por un culto que buscaba eliminar a los guardianes.",
+        "El sacrificio del mentor: El sabio anciano sacrifica su vida para salvar a Elian durante la batalla final."
+    ],
+    "Hilo_simbolico": {
+        "Luz_y_oscuridad": "Representan la lucha entre la esperanza y el miedo, así como el equilibrio necesario en el mundo.",
+        "Tatuaje_celestial": "Simboliza el destino y la conexión de Elian con su legado.",
+        "Estrellas": "Representan la guía y la inspiración, lo que falta en el mundo y lo que se debe recuperar."
+    }
+}
+```

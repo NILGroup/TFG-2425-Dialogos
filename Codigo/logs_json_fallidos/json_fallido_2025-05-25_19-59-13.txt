@@ -1,0 +1,31 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "trama_e_hilo_simbolico",
+    "Titulo": "El Guardian de las Estrellas",
+    "Genero": "Ópera espacial",
+    "Trama": "En un universo donde las estrellas son seres conscientes y han elegido guardianes entre los seres vivos para proteger su luz, la humanidad ha colonizado varios planetas después de un catastrófico evento conocido como 'El Apagón', que extinguió un tercio de las estrellas. La humanidad vive en una alianza frágil entre diferentes facciones espaciales, mientras busca recuperar la tecnología perdida de sus antepasados estelares. La trama principal gira en torno a Aria, una joven que descubre que es la última guardiana viva de una estrella antigua, Elyria, cuya luz fue robada por una entidad oscura conocida como La Sombra Devoradora. Aria debe embarcarse en un viaje por el cosmos para reunir a los fragmentos de Elyria, mientras descubre que es la clave para restaurar la luz de las estrellas y salvar al universo de la aniquilación.",
+    "Hilo_simbolico": "Las estrellas representan la esperanza y la luz en la oscuridad. Aria, como guardiana, debe aprender a equilibrar su propia luz con la oscuridad que la rodea, simbolizando la lucha interna del ser humano entre la esperanza y la desesperación.",
+    "Temas_principales": [
+        "El sacrificio y el costo de ser un guardián.",
+        "La lucha entre la esperanza y la oscuridad.",
+        "La responsabilidad que viene con el poder."
+    ],
+    "Estructura_de_la_trama": [
+        "Introducción al universo: Presentación de la alianza espacial, las facciones y el misterio del Apagón.",
+        "El despertar de Aria: Aria descubre su conexión con Elyria y su papel como guardiana.",
+        "La búsqueda de los fragmentos: Aria viaja por diferentes planetas y enfrenta desafíos mientras recupera los fragmentos de su estrella.",
+        "El antagonista: La Sombra Devoradora se revela como un ser antiguo que busca apagar todas las estrellas para reinar en la oscuridad.",
+        "El sacrificio final: Aria debe decidir entre salvar a su estrella o al universo, descubriendo que ambos están profundamente conectados."
+    ],
+    "Giro_principal": "Aria descubre que no solo es la guardiana de Elyria, sino que también es la última estrella viva, y que su propia existencia está ligada a la luz del universo.",
+    "Subtramas": [
+        "La lucha de poder entre las facciones espaciales por el control de los recursos estelares.",
+        "El misterio detrás del Apagón y su conexión con La Sombra Devoradora.",
+        "La relación entre Aria y su mentor, un antiguo guardián que oculta secretos sobre su pasado."
+    ]
+}
+```

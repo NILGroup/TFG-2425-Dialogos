@@ -1,0 +1,18 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "ESTRUCTURA DE CAPITULOS",
+    "Capitulos": [
+        {
+            "Nombre": "Capítulo 3: Secretos en las Ruinas",
+            "Sinopsis": "El grupo llega a las Ruinas de Nytheria, resuelve un acertijo, activa un espejo mágico y recibe visiones que indican los próximos desafíos para encontrar el Corazón del Mundo.",
+            "Personajes": ["Eryndor", "Arin", "Lirien", "Thalia"],
+            "Escenarios": ["Ruinas de Nytheria"],
+            "Estado": "True"
+        }
+    ]
+}
+```

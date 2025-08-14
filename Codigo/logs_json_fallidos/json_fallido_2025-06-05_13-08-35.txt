@@ -1,0 +1,13 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "trama_e_hilo_simbolico",
+    "Titulo": "La Búsqueda del Ojo de la Eternidad",
+    "Genero": "Aventuras/Fantasía",
+    "Trama": "En un mundo donde el equilibrio entre la luz y la oscuridad está a punto de romperse, un antiguo artefacto conocido como el 'Ojo de la Eternidad' desaparece, llevándose consigo la fuente de poder que mantenía la paz en el reino de Eridoria. El Ojo, capaz de otorgar visiones del pasado y del futuro, es ambicionado por tres facciones principales: La Orden de la Luz Eterna, el Imperio de las Sombras y los Guardianes del Destino. La historia sigue a Eryndor Thal, un joven aventurero que descubre que es el último descendiente de una línea de protectores del Ojo. Con la ayuda de Lysara y Theren, Eryndor se embarca en una peligrosa búsqueda para encontrar el Ojo antes de que caiga en manos equivocadas. A lo largo de su viaje, descubren que el verdadero poder del Ojo no es controlar el destino, sino revelar la verdad sobre su propio pasado y el origen de Eridoria. Sin embargo, un ser oscuro conocido como el 'Devorador de Tiempo' amenaza con destruir todo.",
+    "Hilo_simbolico": "El hilo simbólico de la historia gira en torno al Ojo de la Eternidad, que representa la verdad, el conocimiento y el equilibrio entre la luz y la oscuridad. El viaje de Eryndor simboliza la lucha interna entre el destino y la voluntad personal, así como la importancia de enfrentar las debilidades personales para alcanzar la verdadera sabiduría."
+}
+```

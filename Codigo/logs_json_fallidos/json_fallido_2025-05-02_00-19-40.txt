@@ -1,0 +1,59 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Escenarios": [
+        {
+            "Nombre": "Castillo de Alderán",
+            "Localización": "En el corazón de la ciudad de Alderán, sobre una colina que domina el valle.",
+            "Descripción": "Un imponente castillo de piedra gris con torres altas y almenas, rodeado por un foso seco y una muralla exterior. Sus interiores están adornados con tapices que narran la historia del reino, salones amplios con techos abovedados y ventanales que permiten la entrada de luz natural. La arquitectura es severa y simbólica, reflejando el poder y la autoridad de la monarquía.",
+            "Importancia en la historia": "Es el lugar donde Sofía crece bajo las estrictas normas de la corte, y donde se enfrenta a su padre, el rey. Aquí se desarrollan muchos de los conflictos internos de Sofía y se toman decisiones clave para su futuro.",
+            "Historia y trasfondo": "El castillo ha sido testigo de generaciones de gobernantes y ha sido escenario de bodas reales, coronaciones y, en ocasiones, de conflictos políticos.",
+            "Eventos importantes": [
+                "Sofía escapa del castillo para perseguir su sueño de convertirse en herrera.",
+                "El rey descubre su secreto y la confronta en el salón del trono."
+            ],
+            "Información adicional": "El castillo cuenta con un jardín secreto donde Sofía solía refugiarse de niña, un lugar que más tarde se convierte en símbolo de su deseo de libertad."
+        },
+        {
+            "Nombre": "Taller del Herrero (Taller de Thorne)",
+            "Localización": "En las afueras del Valle de la Forja, cerca de una corriente de agua y un bosque de árboles altos.",
+            "Descripción": "Un taller humilde pero funcional, construido en madera y piedra, con un techo de paja. El interior está lleno de herramientas de herrería, y un gran horno ocupa el centro del espacio. El olor a metal fundido y a humo es constante, y el sonido de los martillos resonando contra el yunque acompañan la vida diaria.",
+            "Importancia en la historia": "Aquí es donde Sofía aprende el oficio de herrera y descubre su verdadera pasión. Es un lugar de transformación personal y profesional para ella.",
+            "Historia y trasfondo": "Thorne, el herrero, construyó el taller con sus propias manos después de dejar su vida en la corte. Aunque no es un lugar lujoso, tiene un encanto rústico y auténtico que refleja la dedicación de su dueño.",
+            "Eventos importantes": [
+                "Sofía comienza su aprendizaje como herrera.",
+                "Thorne se convierte en un mentor para Sofía, enseñándole no solo el oficio, sino también a creer en sí misma."
+            ],
+            "Información adicional": "El taller está lleno de pequeños detalles personales, como herramientas que Thorne ha forjado a lo largo de los años y una pequeña zona para descansar donde Sofía puede reflexionar."
+        },
+        {
+            "Nombre": "Valle de la Forja",
+            "Localización": "Un vasto valle situado al pie de la Cordillera de Hierro, rodeado de ríos y bosques frondosos.",
+            "Descripción": "Un lugar próspero y fértil, conocido por sus campos de cultivo y sus aldeas dedicadas a la herrería y la agricultura. Las casas son de piedra y madera, con techos de paja, y las calles están llenas de vida. El valle está iluminado por el resplandor de los hornos de los talleres, que funcionan día y noche.",
+            "Importancia en la historia": "Es el corazón económico del reino y el lugar donde Sofía encuentra su verdadera vocación. Aquí se desarrollan gran parte de los eventos relacionados con la defensa del reino contra los bandidos.",
+            "Historia y trasfondo": "El valle ha sido durante siglos el centro de la producción de armas y armaduras del reino, y su prosperidad se debe a la riqueza mineral de la Cordillera de Hierro.",
+            "Eventos importantes": [
+                "Sofía diseña armas y armaduras innovadoras para los aldeanos y los soldados del rey.",
+                "Los bandidos atacan several aldeas del valle, lo que lleva a Sofía a tomar medidas drásticas para proteger a su gente."
+            ],
+            "Información adicional": "El valle es conocido por sus fiestas anuales de la cosecha y la forja, donde se celebra el trabajo de los artesanos y los campesinos."
+        },
+        {
+            "Nombre": "Bosque de las Sombras",
+            "Localización": "Al norte del reino, más allá de la Cordillera de Hierro.",
+            "Descripción": "Un bosque denso y misterioso, con árboles altos y troncos gruesos que bloquean gran parte de la luz solar. El suelo está cubierto de musgo y hojas secas, y el ambiente está lleno de sonidos extraños y silencios inquietantes. Se dice que el bosque está habitado por criaturas mágicas y espíritus.",
+            "Importancia en la historia": "Es un lugar de misterio y peligro, donde Sofía se enfrenta a desafíos que ponen a prueba su valentía y habilidades. Aquí se esconden los bandidos que atacan el reino, y Sofía debe infiltrarse para descubrir su plan.",
+            "Historia y trasfondo": "El bosque ha sido durante mucho tiempo un lugar de leyendas y miedos. Se dice que antaño fue un lugar sagrado, pero ahora está abandonado y lleno de peligros.",
+            "Eventos importantes": [
+                "Sofía y Thorne se adentran en el bosque para rescatar a un grupo de aldeanos secuestrados por los bandidos.",
+                "En el bosque, Sofía descubre un antiguo taller de herrería abandonado, que se convierte en un lugar clave para su misión."
+            ],
+            "Información adicional": "El bosque está lleno de ruinas antiguas y restos de una civilización olvidada, lo que añade misterio a su ambiente."
+        }
+    ]
+}
+```

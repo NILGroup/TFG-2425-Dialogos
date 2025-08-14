@@ -1,0 +1,53 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Extra data: line 15 column 1 (char 1314)
+
+🧾 TEXTO RECIBIDO:
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "El Templo del Corazón",
+    "Localización": "En el centro de Tenria, donde converge la energía de los cuatro elementos.",
+    "Descripción": "Un templo antiguo y misterioso construido en una meseta rodeada de un bosque sagrado. Sus paredes están cubiertas de símbolos antiguos que brillan con una luz suave cuando la magia del Corazón está presente. El interior es vasto, con cuatro cámaras dedicadas a cada elemento, y un santuario central donde se encontraba el Corazón de la Tierra.",
+    "Importancia en la historia": "Es el lugar donde se desarrolla el clímax de la historia, la batalla final contra Malakar y los Devoradores de Luz. Aquí se restaura el Corazón de la Tierra.",
+    "Historia y trasfondo": "Fue construido por los dioses elementales como un lugar sagrado para proteger el Corazón. Con el tiempo, se convirtió en un lugar olvidado, hasta que su destrucción trajo caos al mundo.",
+    "Eventos importantes": [
+        "La batalla final entre Alaric y sus aliados contra Malakar y los Devoradores de Luz.",
+        "El sacrificio de Alaric para restaurar el Corazón."
+    ],
+    "Información adicional": "El templo está lleno de trampas y pruebas que solo pueden ser superadas por aquellos con una conexión pura con los elementos."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "La Ciudadela de Eldoria",
+    "Localización": "En el corazón del Reino de Eldoria, rodeada de bosques antiguos.",
+    "Descripción": "Una ciudad amurallada construida con madera y piedra, donde las casas parecen crecer orgánicamente del suelo. La ciudadela está llena de jardines y árboles frondosos, y su arquitectura refleja la armonía con la naturaleza.",
+    "Importancia en la historia": "Es el hogar de Alaric y el lugar donde comienza su viaje. Aquí se encuentran los sabios que le revelan su destino.",
+    "Historia y trasfondo": "La ciudadela fue fundada por los primeros guardianes del Corazón de la Tierra. Es un símbolo de la conexión entre la humanidad y la naturaleza.",
+    "Eventos importantes": [
+        "Alaric descubre su conexión con el Corazón de la Tierra.",
+        "El grupo se reúne por primera vez para planificar su misión."
+    ],
+    "Información adicional": "La ciudadela está protegida por magia de la tierra, lo que la hace resistente a los ataques externos, aunque no infranqueable."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "Las Ruinas de Volaria",
+    "Localización": "En las montañas más altas del Reino de Volaria.",
+    "Descripción": "Un conjunto de ruinas antiguas donde se encuentran los restos de una civilización avanzada que dominaba el control del aire. Las ruinas están llenas de máquinas voladoras oxidadas y estructuras que parecen desafiar la gravedad.",
+    "Importancia en la historia": "Aquí se encuentra uno de los fragmentos del Corazón de la Tierra, protegido por una máquina voladora gigante.",
+    "Historia y trasfondo": "Las ruinas fueron abandonadas después de una guerra que destruyó la civilización volariana. Se dice que sus inventos fueron demasiado ambiciosos y atrajeron la atención de los Devoradores de Luz.",
+    "Eventos importantes": [
+        "El grupo debe superar pruebas de ingenio para activar las máquinas voladoras.",
+        "Un enfrentamiento con un grupo de Devoradores de Luz que también buscan el fragmento."
+    ],
+    "Información adicional": "Las ruinas están llenas de trampas mortales y laberintos que ponen a prueba la inteligencia y la cooperación del grupo."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "La Catedral Sumergida",
+    "Localización": "En el fondo del océano, cerca del Reino de Aquaria.",
+    "Descripción": "Una catedral majestuosa construida con coral y cristal, iluminada por bioluminiscencia marina. Sus altas cúpulas y vitrales reflejan la luz del océano, creando un ambiente mágico y misterioso.",
+    "Importancia en la historia": "Es el lugar donde se encuentra otro fragmento del Corazón de la Tierra, protegido por un guardián marino.",
+    "Historia y trasfondo": "La catedral fue construida por una orden religiosa que adoraba al dios

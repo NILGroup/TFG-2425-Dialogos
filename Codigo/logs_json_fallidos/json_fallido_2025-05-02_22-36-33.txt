@@ -1,0 +1,81 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "ESTRUCTURA DE CAPITULOS",
+    "Capitulos": [
+        {
+            "Nombre": "El llamado de las sombras",
+            "Sinopsis": "Un ataque demoníaco a una aldea inocente deja un rastro de destrucción. Los Cazadores de Sombras son llamados para investigar y descubren la primera pista sobre la existencia del Bufalo Eterno. Eryndor se reencuentra con su mentor, Thalnar, quien le revela que la corrupción demoníaca está aumentando.",
+            "Personajes": ["Eryndor Thal", "Thalnar Drakkonis", "Dharak"],
+            "Escenarios": ["El Enclave de los Cazadores", "la aldea atacada"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "La cacería comienza",
+            "Sinopsis": "Los Cazadores se reúnen en el Enclave para discutir la misión. Kael Darksong propone una estrategia audaz, mientras Lirien Aethereia muestra sus dudas sobre la verdadera naturaleza de la corrupción. Eryndor decide unirse a la cacería, llevando consigo la espada antigua.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Lirien Aethereia", "Thalnar Drakkonis"],
+            "Escenarios": ["El Enclave de los Cazadores"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "El bosque de los susurros",
+            "Sinopsis": "Los Cazadores llegan al Bosque de Nytharia, donde la magia residual del lugar comienza a afectar sus emociones. Eryndor se separa del grupo y encuentra un espíritu guardián del bosque que le revela una verdad sobre su pasado. Mientras tanto, Kael comienza a mostrar signos de corrupción.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Lirien Aethereia", "Dharak"],
+            "Escenarios": ["El Bosque de Nytharia"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "La sombra en el espejo",
+            "Sinopsis": "El grupo es emboscado por demonios en el bosque. Durante la batalla, Kael salva a Eryndor de un ataque mortal, pero su comportamiento se vuelve cada vez más errático. Lirien comienza a sospechar que algo está mal en su interior.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Lirien Aethereia"],
+            "Escenarios": ["El Bosque de Nytharia"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "El templo de la verdad",
+            "Sinopsis": "Los Cazadores llegan a las Montañas de Kragnir y descubren un templo abandonado. Allí, Eryndor encuentra un texto antiguo que revela que el Bufalo Eterno es una manifestación de la corrupción del Rift. Kael, cada vez más inestable, se enfrenta a Thalnar, quien descubre su traición.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Thalnar Drakkonis"],
+            "Escenarios": ["Las Montañas de Kragnir"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "La caída del mentor",
+            "Sinopsis": "Kael ataca a Thalnar en el templo, revelando su alianza con el Bufalo Eterno. Eryndor se ve obligado a defenderse, pero se niega a matar a Kael, esperando salvarlo. Thalnar resulta gravemente herido y le dice a Eryndor que la verdadera batalla está por venir.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Thalnar Drakkonis"],
+            "Escenarios": ["Las Montañas de Kragnir"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "El faro de la esperanza",
+            "Sinopsis": "Los Cazadores llegan a la Costa de Veralia, donde encuentran un barco abandonado con restos de una expedición que intentó cruzar al Reino de las Sombras. Lirien descubre que sus habilidades para sanar tienen un origen mágico más profundo y decide explorar su conexión con los elefantes sagrados.",
+            "Personajes": ["Eryndor Thal", "Lirien Aethereia", "Dharak"],
+            "Escenarios": ["La Costa de Veralia"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "El sacrificio final",
+            "Sinopsis": "Los Cazadores regresan al Enclave para prepararse para la batalla final. Eryndor descubre que el Bufalo Eterno puede ser derrotado usando la espada antigua, pero el costo será enorme. Kael, ahora completamente corrompido, lidera un ataque al Enclave, obligando a los Cazadores a defender su hogar.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Lirien Aethereia", "Thalnar Drakkonis"],
+            "Escenarios": ["El Enclave de los Cazadores"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "La luz en la oscuridad",
+            "Sinopsis": "La batalla final tiene lugar en el Enclave. Eryndor enfrenta a Kael en un duelo épico, mientras Lirien y los demás Cazadores luchan por contener al Bufalo Eterno. Eryndor sacrifica su conexión con Dharak para usar la espada antigua y destruir al Bufalo, pero logra salvar a Kael de la corrupción.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Lirien Aethereia", "Dharak"],
+            "Escenarios": ["El Enclave de los Cazadores"],
+            "Estado": "True (terminado)"
+        },
+        {
+            "Nombre": "El amanecer de un nuevo mundo",
+            "Sinopsis": "La derrota del Bufalo Eterno trae un nuevo amanecer, pero el mundo ha cambiado. Los Cazadores se disuelven como orden, pero Eryndor, Lirien y Kael (quien ahora busca redimirse) parten en caminos separados. El final es abierto, dejando la puerta abierta a nuevas aventuras.",
+            "Personajes": ["Eryndor Thal", "Kael Darksong", "Lirien Aethereia"],
+            "Escenarios": ["El Enclave de los Cazadores", "la Costa de Veralia"],
+            "Estado": "True (terminado)"
+        }
+    ]
+}
+```

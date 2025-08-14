@@ -27,13 +27,13 @@ class Login:
             width=300
         )
 
-        # Lógica de login simulada
+        # Lógica de login
         def login(e):
             user = user_manager.buscar_usuario(usuario.value)
             if user:
                 if user["password"] == contrasena.value:
-                    page.client_storage.set("username", usuario.value)
-                    page.client_storage.set("email", user["email"])
+                    page.session.set("usuario", usuario.value)
+                    page.session.set("email", user["email"])
                     page.go("/home")
                 else:
                     error.value = "Usuario o contraseña incorrectos"

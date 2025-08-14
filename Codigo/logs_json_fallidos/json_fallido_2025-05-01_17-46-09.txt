@@ -1,0 +1,18 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "ESTRUCTURA DE CAPITULOS",
+    "Capitulos": [
+        {
+            "Nombre": "El Guardian y el Equilibrio",
+            "Sinopsis": "La luna llena baña el bosque sagrado. Lila Earthsong, una anciana druida, protege el Árbol de la Vida del ataque de 'La Sombra', una organización oscura. El Guardian, corazón de Mundia, es extraído, y el bosque comienza a marchitarse. Lila, en sus últimos momentos, recuerda una profecía sobre cuatro elegidos que restaurarán el equilibrio.",
+            "Personajes": ["Lila Earthsong", "El Líder de La Sombra"],
+            "Escenarios": ["Bosque Sagrado", "Árbol de la Vida"],
+            "Estado": "True"
+        }
+    ]
+}
+```

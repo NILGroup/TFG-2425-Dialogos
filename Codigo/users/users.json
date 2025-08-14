@@ -1,22 +1,6 @@
 {
-  "Admin": {
+  "admin": {
     "email": "admin@gmail.com",
-    "password": "1234"
-  },
-  "Pablo P": {
-    "email": "pp@gmail.com",
-    "password": "12"
-  },
-  "Yo": {
-    "email": "dffdd",
-    "password": "12"
-  },
-  "Admin2": {
-    "email": "admin@gmail.com",
-    "password": "12"
-  },
-  "Admin5": {
-    "email": "admin2@gmail.com",
-    "password": "112"
+    "password": "123"
   }
 }

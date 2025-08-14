@@ -1,0 +1,32 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Invalid control character at: line 5 column 423 (char 553)
+
+🧾 TEXTO RECIBIDO:
+{
+    "Seccion": "trama_e_hilo_simbolico",
+    "Titulo": "La Búsqueda del Ocaso Eterno",
+    "Genero": "Aventuras/Fantasía Épica",
+    "Trama": "En un mundo donde el sol se apaga paulatinamente, un joven guerrero llamado Eryndor Thorne descubre que es el elegido para encontrar el amuleto de la Serpiente Dorada, un artefacto legendario que puede restaurar la luz del mundo. Sin embargo, no está solo en su misión. Una organización oscura, liderada por el misterioso Kael, también busca el amuleto para usar su poder para gobernar sobre las tinieblas.  
+
+La historia se desarrolla en tres partes principales:  
+
+1. **Introducción:** Eryndor crece en un pueblo humilde donde la tradición oral habla de un héroe que salvará al mundo. Cuando su aldea es destruida por Kael, Eryndor decide embarcarse en una búsqueda para vengar a su familia y descubre su destino como el elegido.  
+
+2. **Nudo:** Eryndor se une a un grupo de aliados: una maga llamada Lirien, un ladrón callejero llamado Arin, y un guerrero enano llamado Tharros. Juntos, atraviesan peligrosos paisajes, resuelven acertijos antiguos y enfrentan a criaturas mitológicas. Mientras tanto, Kael revela que fue once vez un héroe que intentó salvar al mundo pero fue corrompido por el poder del amuleto.  
+
+3. **Desenlace:** El grupo llega al Templo del Ocaso, donde se encuentra el amuleto. Sin embargo, Kael los confronta en una batalla épica. Eryndor debe elegir entre destruir el amuleto para evitar que caiga en manos equivocadas o usar su poder para salvar al mundo, arriesgándose a ser corrompido como Kael.  
+
+**Giro inicial:** La destrucción de la aldea de Eryndor y el descubrimiento del amuleto.  
+
+**Giro final:** La revelación de que Kael fue un héroe caído y la elección final de Eryndor sobre el destino del amuleto.  
+
+**Subtramas:**  
+- La maldición de la tribu de Luminaria, que une a Eryndor y Lirien.  
+- La búsqueda de redención de Arin, quien oculta un pasado trágico.  
+- La lealtad de Tharros, que se ve testeada cuando su clan enano se une a Kael.  
+
+**Temas principales:**  
+- El equilibrio entre el poder y la ambición.  
+- La importancia de la lealtad y el sacrificio.",
+    "Hilo_simbolico": "El hilo simbólico de la historia gira en torno al amuleto de la Serpiente Dorada, que representa tanto la esperanza de restauración como el peligro de la corrupción. El sol apagándose simboliza la decadencia del mundo y la necesidad de un héroe que restaure el equilibrio. La lucha entre Eryndor y Kael refleja el conflicto interno entre el bien y el mal, así como la transformación personal de ambos personajes a lo largo de la historia."
+}

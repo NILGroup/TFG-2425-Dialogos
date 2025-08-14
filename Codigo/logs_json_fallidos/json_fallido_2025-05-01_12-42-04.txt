@@ -1,0 +1,82 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Extra data: line 15 column 1 (char 911)
+
+🧾 TEXTO RECIBIDO:
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "El Bosque de Elvendom",
+    "Localización": "Región noreste de Eldoria.",
+    "Descripción": "Un bosque milenario con árboles gigantes, luz esmeralda filtrada por el dosel, y una atmósfera mágica palpable. Habitan criaturas mágicas como elfos, espíritus de la naturaleza y animales sobrenaturales.",
+    "Importancia en la historia": "Es el pulmón de Eldoria y el hogar de los elfos. Aquí comienza el viaje de Eryndor y es donde conoce a Arin.",
+    "Historia y trasfondo": "Considerado sagrado, este bosque es fuente de magia y sabiduría antigua.",
+    "Eventos importantes": [
+        "Eryndor descubre su conexión con el Corazón del Mundo.",
+        "El grupo encuentra pistas sobre el paradero del artefacto."
+    ],
+    "Información adicional": "El bosque está protegido por hechizos que impiden la entrada a aquellos con malas intenciones."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "La Fortaleza de Vorgath",
+    "Localización": "Cima de La Cordillera de las Sombras.",
+    "Descripción": "Una fortaleza imponente con paredes negras y torres afiladas, rodeada de niebla tóxica y energía oscura. Interior lleno de trampas y criaturas sombrías.",
+    "Importancia en la historia": "Es el escondite de Vorgath y el lugar donde se oculta el Corazón del Mundo.",
+    "Historia y trasfondo": "Construida con magia oscura, la fortaleza ha sido testigo de rituales oscuros y sacrificios.",
+    "Eventos importantes": [
+        "Batalla final contra Vorgath y sus seguidores."
+    ],
+    "Información adicional": "La fortaleza está llena de minerales mágicos corruptos que fortalecen el poder de Vorgath."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "Las Llanuras de Arinthal",
+    "Localización": "Centro de Eldoria.",
+    "Descripción": "Llanuras extensas con pueblos y ciudades, afectadas por sequías y declive debido a la pérdida de magia.",
+    "Importancia en la historia": "Es el corazón comercial y social, pero sufre por la crisis.",
+    "Historia y trasfondo": "Fue próspero hasta la crisis mágica.",
+    "Eventos importantes": [
+        "El grupo busca suministros y enfrenta desafíos en los pueblos."
+    ],
+    "Información adicional": "La gente lucha por sobrevivir, con ciudades en declive."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "Ruinas de Nytheria",
+    "Localización": "Región suroeste de Eldoria.",
+    "Descripción": "Ruinas de una antigua civilización con estructuras colapsadas, cubiertas de vegetación, y misteriosas runas.",
+    "Importancia en la historia": "Es la cuna de la magia y tiene secretos sobre el Corazón del Mundo.",
+    "Historia y trasfondo": "Fue un imperio poderoso que cayó tras un cataclismo.",
+    "Eventos importantes": [
+        "El grupo encuentra artefactos y acertijos clave para su misión."
+    ],
+    "Información adicional": "Las ruinas están llenas de trampas y misterios."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "Pueblo de Brindlemark",
+    "Localización": "Las Llanuras de Arinthal.",
+    "Descripción": "Un pueblo pequeño y humilde, con casas de madera y cultivos. Es el hogar de Eryndor.",
+    "Importancia en la historia": "Es donde Eryndor creció y comenzó su viaje.",
+    "Historia y trasfondo": "Fue un pueblo próspero, ahora afectado por la sequía.",
+    "Eventos importantes": [
+        "Eryndor se despide de su pueblo al inicio de su aventura."
+    ],
+    "Información adicional": "Es un lugar de encuentro para viajeros y comerciantes."
+}
+
+{
+    "Seccion": "DESCRIPCIÓN DE ESCENARIOS",
+    "Nombre": "La Montaña de las Sombras",
+    "Localización": "Cordillera central de Eldoria.",
+    "Descripción": "Montaña imponente con niebla perpetua, cuevas oscuras y minerales mágicos.",
+    "Importancia en la historia": "Esconde la Fortaleza de Vorgath y el Corazón del Mundo.",
+    "Historia y trasfondo": "Considerada un lugar sagrado, pero ahora corrupto por la magia oscura.",
+    "Eventos importantes": [
+        "El viaje del grupo hacia la fortaleza."
+    ],
+    "Información adicional": "Las cuevas están llenas de peligros y secretos."
+}

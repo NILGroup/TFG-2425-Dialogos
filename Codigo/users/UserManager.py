@@ -23,7 +23,7 @@ def buscar_usuario(username):
 def buscar_correo(email):
     usuarios = cargar_usuarios()
     for datos in usuarios.values():
-        if datos.get("username") == email:
+        if datos.get("email") == email:
             return True
     return False
 

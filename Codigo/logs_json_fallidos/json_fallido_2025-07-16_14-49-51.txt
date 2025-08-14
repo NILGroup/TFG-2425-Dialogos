@@ -1,0 +1,42 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Invalid control character at: line 5 column 588 (char 698)
+
+🧾 TEXTO RECIBIDO:
+{
+    "Seccion": "trama_e_hilo_simbolico",
+    "Titulo": "El Guardián del Destino",
+    "Genero": "Aventuras",
+    "Trama": "En un mundo donde el equilibrio entre la luz y la oscuridad se mantiene gracias a un antiguo artefacto conocido como 'El Corazón del Destino', un joven llamado Eryndor Thorne descubre que es el elegido para protegerlo. El Corazón del Destino, escondido en un lugar olvidado, es perseguido por una organización secreta que busca usar su poder para controlar el mundo. Eryndor, junto a un grupo de aliados, debe atravesar peligrosos paisajes, resolver acertijos antiguos y enfrentarse a sus propios demonios internos para evitar que el artefacto caiga en manos equivocadas.  
+
+**Estructura y temas principales:**  
+1. **Planteamiento:**  
+   - Introducción del mundo y sus reglas.  
+   - Presentación de Eryndor, un joven humilde con un destino excepcional.  
+   - La aparición de la organización secreta y su interés por el artefacto.  
+
+2. **Nudo:**  
+   - Eryndor descubre su conexión con el Corazón del Destino.  
+   - Viaje épico para encontrar el artefacto, con obstáculos naturales y enemigos.  
+   - Subtramas:  
+     - Un personaje misterioso que parece ayudar al grupo pero oculta su verdadera intención.  
+     - Un conflicto interno en la organización secreta que genera dudas sobre su verdadero propósito.  
+
+3. **Desenlace:**  
+   - Confrontación final entre Eryndor y el líder de la organización.  
+   - Uso del Corazón del Destino para restaurar el equilibrio o destruirlo definitivamente.  
+   - Sacrificio de un personaje clave para salvar al mundo.  
+
+**Temas principales:**  
+- La responsabilidad del destino.  
+- La importancia de la amistad y la confianza.  
+- El sacrificio por el bien mayor.  
+
+**Giro inesperado:**  
+El personaje misterioso que ayudaba al grupo es en realidad el hermano perdido de Eryndor, quien fue manipulado por la organización secreta.  
+
+**Subtramas relevantes:**  
+- El pasado de Eryndor y su conexión con el Corazón del Destino.  
+- La verdadera naturaleza del artefacto y su origen.  
+- La lucha interna de la organización secreta entre sus miembros leales y los disidentes.",
+    "Hilo_simbolico": "El hilo simbólico de la historia gira en torno al artefacto conocido como 'El Corazón del Destino', que representa el equilibrio entre la luz y la oscuridad. Para Eryndor, este artefacto simboliza su lucha interna por aceptar su destino y la responsabilidad que conlleva. El viaje por diferentes paisajes y la resolución de acertijos antiguos reflejan su crecimiento personal y la importancia de la perseverancia y la confianza en los demás."
+}

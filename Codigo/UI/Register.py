@@ -85,9 +85,6 @@ class Register:
             elif error_loging_style():
                 correcto = False   
             if correcto and user_manager.registrar_usuario(correo.value, usuario.value, contrasena.value):
-                error.value = "Usuario registrado correctamente"
-                page.client_storage.set("username", usuario.value)
-                page.client_storage.set("email", correo.value)
                 page.go("/home")
             page.update()
 
@@ -104,9 +101,26 @@ class Register:
 
         error = ft.Text("", color=ft.Colors.RED)
 
+        def button_back(e):
+            page.go("/")
+            page.update()
+
+        #Boton para ir hacia atras
+        btn_back = ft.IconButton(
+            icon=ft.Icons.CHEVRON_LEFT,
+            on_click=button_back
+        )
+
+        page.appbar = ft.AppBar(
+            leading=btn_back,
+            leading_width=40,
+            center_title=True,
+        )
+
         return ft.View(
             route="/register",
             controls=[
+                page.appbar,
                 usuario,
                 correo,
                 contrasena,

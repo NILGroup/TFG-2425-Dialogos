@@ -1,0 +1,13 @@
+❌ ERROR DE DECODIFICACIÓN JSON:
+Expecting value: line 1 column 1 (char 0)
+
+🧾 TEXTO RECIBIDO:
+```json
+{
+    "Seccion": "trama_e_hilo_simbolico",
+    "Titulo": "La luz del reino encantado",
+    "Genero": "Fantasía/Adventure",
+    "Trama": "En el reino de Azura, donde el sol nunca deja de brillar, la princesa Sofía vive una vida protegida bajo la sombra de su padre, el rey Eduardo. Sin embargo, el reino está en peligro: una maldición desconocida está making que las flores se marchiten, los ríos se sequen y la gente pierda la esperanza. La única pista es un antiguo libro de hechizos que habla de un bosque encantado donde se encuentra la fuente de la vida del reino. Sofía decide abandonar el castillo sin permiso para explorar el bosque encantado. Allí, descubre que la maldición fue causada por un hechicero que robó un cristal mágico, el corazón del reino. En su viaje, conoce a un misterioso mentor llamado Eryndor, quien le enseña a controlar sus dones especiales y a creer en sí misma. Juntos, enfrentan obstáculos, criaturas mágicas y pruebas que ponen a Sofía al límite. Mientras tanto, en el reino, su padre lucha por mantener la calma y encontrar una solución, pero la desesperanza se apodera de los ciudadanos. Sofía y Eryndor llegan al castillo del hechicero, donde se enfrentan a una serie de desafíos que prueban su valentía, inteligencia y corazón. En el clímax, Sofía descubre que el hechicero es en realidad su tío, quien buscaba venganza contra el rey por un pasado doloroso. Sofía logra recuperar el cristal, pero no sin sacrificar algo importante: su conexión con Eryndor, quien resulta ser un espíritu del bosque que desaparece una vez cumplida su misión. Con el cristal de vuelta, el reino de Azura renace. Las flores florecen de nuevo, los ríos vuelven a fluir y la esperanza regresa. Sofía, ahora más madura y valiente, es recibida como una heroína. Su padre, orgulloso de ella, decide que es hora de que asuma un papel más activo en el gobierno del reino. Sofía, sin embargo, decide viajar por el mundo para ayudar a otros reinos necesitados, llevando consigo la lección que aprendió: que el verdadero poder viene del corazón.",
+    "Hilo_simbolico": "El bosque encantado representa el subconsciente y los miedos internos de Sofía, así como la conexión con la naturaleza. La maldición simboliza la oscuridad y el miedo que puede apoderarse de un reino cuando se pierde la esperanza. El cristal es el símbolo del poder interno y la pureza de corazón de Sofía."
+}
+```
