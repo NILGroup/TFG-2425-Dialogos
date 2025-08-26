@@ -2,5 +2,29 @@
   "admin": {
     "email": "admin@gmail.com",
     "password": "123"
+  },
+  "prueba": {
+    "email": "prueba@gmail.com",
+    "password": "123"
+  },
+  "Puri": {
+    "email": "puripadial@gmail.com",
+    "password": "prueba"
+  },
+  "Ana": {
+    "email": "elquequieras@gamil.com",
+    "password": "ana"
+  },
+  "Carmen": {
+    "email": "cigmpippi@gmail.com",
+    "password": "2501"
+  },
+  "celiaSalo": {
+    "email": "celia.padial@gmail.com",
+    "password": "pablo"
+  },
+  "Marta": {
+    "email": "pi.marta.pi97@gmail.com",
+    "password": "Hist_3"
   }
 }

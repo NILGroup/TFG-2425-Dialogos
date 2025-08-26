@@ -1,33 +1,61 @@
 import flet as ft
 from flet_route import Params, Basket
 import users.UserManager as user_manager
+from UI.Theme import HISTORIAS_THEME as th
 
 class Login:
     
     def __init__(self):
         pass
 
-    def view(self, page: ft.Page, params:Params, basket:Basket):
-        page.bgcolor = ft.Colors.GREY_50
-        # Campos de entrada
+    def view(self, page: ft.Page, params: Params, basket: Basket):
+
+        # === Campos de entrada refinados ===
         usuario = ft.TextField(
-            label="Username",
-            prefix_icon=ft.Icons.PERSON,
-            border_radius=ft.border_radius.all(25),
+            label="Usuario",
+            prefix_icon=ft.Icon(ft.Icons.PERSON_OUTLINE, th["TEXT"]),
+            border_radius=20,
             filled=True,
-            width=300
-        )
-        contrasena = ft.TextField(
-            label="Password",
-            prefix_icon=ft.Icons.LOCK,
-            password=True,
-            can_reveal_password=True,
-            border_radius=ft.border_radius.all(25),
-            filled=True,
+            bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.BLACK),
+            label_style=ft.TextStyle(color=th["TEXT"]),
+            color=th["TEXT"],
             width=300
         )
 
-        # Lógica de login
+
+        # Estado para saber si mostrar u ocultar la contraseña
+        mostrar_pwd = ft.Ref[bool]()
+        mostrar_pwd.value = False
+
+        def alternar_password(e):
+            mostrar_pwd.value = not mostrar_pwd.value
+            contrasena.password = not mostrar_pwd.value
+            contrasena.suffix = ft.IconButton(
+                icon=ft.Icons.VISIBILITY if not mostrar_pwd.value else ft.Icons.VISIBILITY_OFF,
+                icon_color=th["TEXT"],
+                on_click=alternar_password
+            )
+            page.update()
+
+        contrasena = ft.TextField(
+            label="Contraseña",
+            prefix_icon=ft.Icon(ft.Icons.LOCK_OUTLINE, color=th["TEXT"]),
+            password=True,
+            border_radius=20,
+            filled=True,
+            bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.BLACK),
+            label_style=ft.TextStyle(color=th["TEXT"]),
+            color=th["TEXT"],
+            suffix=ft.IconButton(
+                icon=ft.Icons.VISIBILITY,
+                icon_color=th["TEXT"],
+                on_click=alternar_password
+            ),
+            width=300
+        )
+
+        page.add(contrasena)
+        # === Lógica de login ===
         def login(e):
             user = user_manager.buscar_usuario(usuario.value)
             if user:
@@ -41,43 +69,42 @@ class Login:
                 error.value = "Usuario o contraseña incorrectos"
             page.update()
 
-        # Elementos visuales
-        recordar = ft.Checkbox(label="Remember me")
-        error = ft.Text("", color=ft.Colors.RED)
+        # === Elementos visuales ===
+        #recordar = ft.Checkbox(label="Recordarme", value=False, fill_color=ft.Colors.WHITE)
+        error = ft.Text("", color=th["ERROR"])
 
         btn_login = ft.ElevatedButton(
-            text="Login",
+            text="Entrar",
             width=300,
             height=45,
             style=ft.ButtonStyle(
                 shape=ft.RoundedRectangleBorder(radius=25),
-                bgcolor=ft.Colors.WHITE,
-                color=ft.Colors.BLACK
+                bgcolor=th["SUCCESS"],
+                color=th["TEXT"],
+                elevation=8
             ),
             on_click=login
         )
 
-        adition = ft.Row(
-            controls=[
-                recordar,
-                ft.TextButton("Forgot password?", on_click=lambda e: print("Recuperar")),
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            width=300
-        )
+        # adition = ft.Row(
+        #     controls=[
+        #         recordar,
+        #         ft.TextButton("¿Olvidaste tu contraseña?", on_click=lambda e: print("Recuperar")),
+        #     ],
+        #     alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+        #     width=300
+        # )
 
         register = ft.Row(
             controls=[
-                ft.Text("Don’t have an account? "),
+                ft.Text("¿No tienes cuenta? ", color=th["TEXT"], size=18),
                 ft.TextButton(
-                    text="Register",
+                    text="Regístrate",
                     style=ft.ButtonStyle(
                         padding=0,
                         overlay_color=ft.Colors.TRANSPARENT,
-                        color=ft.Colors.BLUE,
-                        text_style=ft.TextStyle(
-                            decoration=ft.TextDecoration.UNDERLINE
-                        )
+                        color=th["TEXT"],
+                        text_style=ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE)
                     ),
                     on_click=lambda e: page.go("/register")
                 )
@@ -85,53 +112,52 @@ class Login:
             alignment=ft.MainAxisAlignment.CENTER
         )
 
-
-        #Caja principal estilo “glass”
-        incio_sesion = ft.Container(
+        # === Caja principal con efecto Glassmorphism ===
+        inicio_sesion = ft.Container(
             content=ft.Column(
                 controls=[
-                    ft.Text("Login", size=30, weight=ft.FontWeight.BOLD),
+                    ft.Text("INICIAR SESIÓN", size=26, weight=ft.FontWeight.BOLD, color=ft.Colors.BLACK),
+                    ft.Text("Accede para comenzar tu historia", size=14, color=ft.Colors.BLACK),
                     usuario,
                     contrasena,
-                    adition,
+                    #adition,
                     btn_login,
                     error,
                     register
                 ],
-                spacing=10,
+                spacing=15,
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             ),
-            border_radius=20,
             width=380,
-            height=460,
-            gradient=ft.LinearGradient(
-                begin=ft.alignment.top_center,
-                end=ft.alignment.bottom_center,
-                colors=[
-                    ft.Colors.AMBER_400,
-                    ft.Colors.ORANGE_500,
-                    ft.Colors.DEEP_ORANGE_600,
-                ],
+            padding=30,
+            border_radius=20,
+            bgcolor=th["BG"],
+            #bgcolor=ft.Colors.with_opacity(0.15, ft.Colors.WHITE),
+            shadow=ft.BoxShadow(
+                spread_radius=1,
+                blur_radius=15,
+                color=ft.Colors.BLACK26,
+                offset=ft.Offset(0, 4)
             ),
-
+            border=ft.border.all(2, ft.Colors.PURPLE),
         )
 
-
+        # === Descripción lateral ===
         descripcion = ft.Container(
             content=ft.Column(
                 controls=[
                     ft.Text(
-                        "Bienvenido al Creador de Historias",
-                        size=36,
+                        "Bienvenido a historIAs",
+                        size=42,
                         weight=ft.FontWeight.BOLD,
-                        color=ft.Colors.BLACK
+                        color=th["TEXT"]
                     ),
                     ft.Text(
                         "Explora tu imaginación y crea historias inolvidables con la ayuda de la inteligencia artificial. "
                         "Esta herramienta te guía paso a paso para construir mundos, personajes y tramas, desde la idea inicial hasta el capítulo final.",
-                        size=18,
-                        color=ft.Colors.BLACK,
-                        width=400
+                        size=24,
+                        color=th["TEXT"],
+                        width=600
                     )
                 ],
                 spacing=20,
@@ -142,52 +168,51 @@ class Login:
             expand=True
         )
 
+        # === Contenedor login ===
         ct = ft.Container(
-                content=incio_sesion,
-                alignment=ft.alignment.center_right,
-                padding=200,
-        )   
-
-        separador = ft.Container(
-            width=2,  # Ancho de la barra
-              # Que se estire verticalmente como las otras columnas
-            bgcolor=ft.Colors.AMBER_50,  # Color base de la barra
-            shadow=ft.BoxShadow(
-                spread_radius=1,
-                blur_radius=4,
-                color=ft.Colors.GREY_500,
-                offset=ft.Offset(2, 0)
-            ),
-            border_radius=ft.border_radius.all(10),  # Opcional para bordes suaves
-            alignment=ft.alignment.center
+            content=inicio_sesion,
+            alignment=ft.alignment.center_right,
+            padding=200,
         )
 
+        # === Separador visual ===
+        # separador = ft.Container(
+        #     width=2,
+        #     bgcolor=ft.Colors.AMBER_50,
+        #     shadow=ft.BoxShadow(
+        #         spread_radius=1,
+        #         blur_radius=4,
+        #         color=ft.Colors.GREY_500,
+        #         offset=ft.Offset(2, 0)
+        #     ),
+        #     border_radius=ft.border_radius.all(10),
+        #     alignment=ft.alignment.center
+        # )
 
+        # === Fila central ===
         contenido = ft.Row(
             controls=[
                 descripcion,
-                separador,
+                #separador,
                 ct
             ],
             expand=True,
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
         )
 
-
-        # Fondo con color degradado (puedes reemplazar con imagen si quieres)
+        # === Fondo degradado ===
         return ft.View(
             route="/",
             controls=[
-                ft.Container(  # Contenedor general con fondo
+                ft.Container(
                     expand=True,
-                    bgcolor=ft.Colors.AMBER_50,  # 🎨 Cambia el color aquí como prefieras
+                    bgcolor = th["FONDO"],
                     content=ft.Stack(
                         expand=True,
                         controls=[
-                            contenido  # Tu Row con descripción e inicio de sesión
+                            contenido
                         ],
                     )
                 )
             ]
         )
-

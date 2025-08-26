@@ -90,7 +90,6 @@ PROMPT_JSON = """
 
                 Los nombres de secciones como "trama_e_hilo_simbolico", "descripcion_de_escenarios", etc., deben escribirse siempre en minusculas y sin tildes, para que puedan ser reconocidos por el sistema.
                 Las secciones de la historia son las siguientes (las escribiremos siempre sin acentos para evitar problemas):
-                    **update**  
                     **trama_e_hilo_simbolico**  
                     **descripcion_de_mundo**  
                     **personajes_principales**  
@@ -186,6 +185,7 @@ PROMPT_ESCRITURA_RAPIDA = """
             5. Ajusta el tono general (triste, alegre, misterioso, etc.) según lo indicado por el usuario.
             6. Usa un lenguaje narrativo adaptado al género elegido.
             7. No incluyas explicaciones meta ni comentarios fuera de la narración.
+            8. Si el usuario te pide una modificacion o reescritura, muestra de nuevo ese capitulo.
 
                 ##*"Capitulo":* <número del capítulo>##
                 ##*"Titulo":* "<Título del capítulo>"##
@@ -198,8 +198,8 @@ PROMPT_ESCRITURA_RAPIDA = """
             - El capítulo debe continuar la trama de manera coherente, usando el contexto que te proporcionaré.
 
             ### Ejemplo de salida
-            Capitulo: 1,
-            Titulo: El eco de la profecía,
+            **Capitulo:** 1,
+            **Titulo:** El eco de la profecía,
             El viento del norte soplaba con fuerza mientras Kael, el joven mago...
 """
 
@@ -230,16 +230,17 @@ PROMPT_TEXTO = """
 PROMPT_CAPITULOS = """
                         Ahora toca ESCRIBIR los capitulos. Es importante que escribas 1 CAPITULO en cada mensaje.
                         Usaras la informacion que se te pasa como contexto para ir creando los capitulos. La estructura de tus mensajes es la siguientes:
-                        Quiero que los capitulos sean MUY LARGOS.
-
-
+                        Quiero que los capitulos sean LARGOS unas 2000 palabras.
+                        ES OBLIGATORIO QUE EN EL CAPITULO 4 TERMINE LA HISTORIA. No vuelvas a repetir ninguna capitulo anterior. Si vamos a escribir el capitulo 4 no cambies al capitulo_1, capitulo_2 o capitulo_3
+                        Cuando capitulo == 4, asegurate de que la historia tenga un cierre satisfactorio, resolviendo los conflictos principales y dejando una sensación de conclusión. NO CAMBIES DE CAPITULO, NI REPITAS EL 1.
+                        
                         **CAPITULO X**
                         **Nombre del capitulo**
                         Escritura del capitulo
 
                         Si el usuario no está conforme, ofrécele una serie de alternativas narrativas claras para que elija (por ejemplo: cambiar el ritmo, profundizar en un personaje, alterar el tono, añadir más acción o diálogo, etc.). Si el usuario sugiere directamente una modificación concreta, aplica únicamente esa sugerencia. En todos los casos, **vuelve a reescribir el capítulo completo tras cada cambio**.
-                        -"Soy la voz de Nytharia,"- respondió la mujer. -"Y he llamado a ti porque eres el único que puede escuchar."-
-                        Los dialogos tienen que seguir esa estructura usando el simbolo "-" al principio y al final de la frase.
+                        -Soy la voz de Nytharia,- respondió la mujer. -Y he llamado a ti porque eres el único que puede escuchar.-
+                        Los dialogos tienen que seguir esa estructura usando el simbolo - al principio y al final de la frase.
                         ---
 
                         ###REGLAS PARA LA ESCRITURA DE LOS CAPÍTULOS:
@@ -323,8 +324,8 @@ PROMPT_RESUMEN_CAPITULO = """
                             - El JSON debe ser texto plano, sin ningún tipo de envoltorio, encabezado o explicación adicional.
                         ### EJEMPLO
                         {
-                            "Seccion": "resumen",
-                            "Capitulo": 1,
+                            "Seccion": "capitulo_1",
+                            "Capitulo": nombre del capitulo,
                             "Resumen": (Resumen del capitulo)
                         }
 """

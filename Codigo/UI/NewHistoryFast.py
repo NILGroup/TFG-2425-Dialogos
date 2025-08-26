@@ -160,7 +160,7 @@ class NuevaHistoriaRapida:
                 "Crea una historia a partir de estos datos."
             )
             # Lanzar la generación en segundo plano
-            threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta,)).start()
+            threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta, "continuar", "")).start()
 
         btn_generar = ft.ElevatedButton(
             text="¡Generar historia!",
@@ -290,7 +290,7 @@ class NuevaHistoriaRapida:
                         "Modificar",
                         icon=ft.Icons.ARROW_BACK,
                         style=ft.ButtonStyle(bgcolor=ft.Colors.ORANGE_400, color=ft.Colors.WHITE),
-                        on_click=lambda e: reiniciar()
+                        on_click=lambda e: actualizar_capitulo(e)
                     ),
                     ft.ElevatedButton(
                         "Continuar",
@@ -301,9 +301,48 @@ class NuevaHistoriaRapida:
                 alignment=ft.MainAxisAlignment.CENTER,
                 spacing=16,
             )
+            
 
-            def continuar_capitulo(e):
-                self.capitulo += 1
+
+            campo_modificar = ft.TextField(
+                hint_text="¿Que cambio quieres hacer en la sección?",
+                multiline=False,
+                autofocus=True,
+                border=ft.InputBorder.OUTLINE,
+                width=400,
+                #on_submit=send_message
+            )
+
+            def button_reescribir(e):
+                self.capitulo = self.capitulo -1
+                continuar_capitulo(e, accion="reescribir")
+
+            def button_accept(e):
+                page.close(modificar_dialog)
+                self.capitulo = self.capitulo -1
+                mensaje = campo_modificar.value.strip()  # Limpiar el campo de entrada
+                continuar_capitulo(e, accion="modificar", user_input=mensaje)
+
+            modificar_dialog = ft.AlertDialog(
+                modal=True,
+                title=ft.Text("Modificar"),
+                content=ft.Container(
+                    campo_modificar,
+                    width=520,
+                ),
+                actions=[
+                    ft.TextButton("Cancelar", on_click=lambda e: page.close(modificar_dialog)),
+                    ft.TextButton("Aceptar", on_click=button_accept), 
+                ],
+                actions_alignment=ft.MainAxisAlignment.END
+            )
+
+            def actualizar_capitulo(e):
+                print("Modificar historia")
+                campo_modificar.value = ""  # Limpiar el campo de entrada
+                page.open(modificar_dialog)  # Abrir el diálogo de modificación
+
+            def continuar_capitulo(e, accion="continuar", user_input=""):
                 datos_encuesta = (
                     f"Tema: {tema.value}\n"
                     f"Género: {genero.value}\n"
@@ -316,7 +355,10 @@ class NuevaHistoriaRapida:
                 )
                 estado["pantalla"] = "cargando"
                 actualizar_vista()
-                threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta,)).start()
+                threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta, accion, user_input)).start()
+
+
+
 
             return ft.Column(
                 [cabecera, ft.Container(height=12), fila_centrada, ft.Container(height=12), botones],
@@ -327,14 +369,15 @@ class NuevaHistoriaRapida:
 
 
         # Lógica para procesar la IA y actualizar el resultado
-        def procesar_en_segundo_plano(datos_encuesta):
+        def procesar_en_segundo_plano(datos_encuesta, accion, user_input=""):
             # --- Aquí llamas a tu IA/servicio de generación ---
-            respuesta = controller.procesar_mensaje_rapido(datos_encuesta, self.capitulo)
+            respuesta = controller.procesar_mensaje_rapido(datos_encuesta, self.capitulo, accion, user_input)
             print(respuesta)
             # Guarda la respuesta en la variable de estado
             historia_generada["texto"] = respuesta
             historia_generada["titulo"] = "Historia generada"  # Puedes extraer un título si lo tienes
             estado["pantalla"] = "resultado"
+            self.capitulo = self.capitulo+1
             # Actualiza la vista en el hilo principal
             page.run_thread(actualizar_vista)
 

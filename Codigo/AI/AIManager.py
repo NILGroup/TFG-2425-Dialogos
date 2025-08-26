@@ -29,7 +29,8 @@ def get_ai_response(messages:str)->str:
     })
 
     completion = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",
+        #model="llama3-70b-8192",
         messages=messages,
         temperature=0.8,
         max_tokens=4096,
@@ -50,7 +51,8 @@ def get_ai_response_fast(messages: str)->str:
         })
 
     completion = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",
+        #model="llama3-70b-8192",
         messages=messages,
         temperature=0.7,
         max_tokens=4096,
@@ -63,7 +65,8 @@ def get_ai_response_fast(messages: str)->str:
 
 def get_ai_response_others(messages):
     completion = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",
+        #model="llama3-70b-8192",
         messages=messages,
         temperature=0.7,
         max_tokens=4096,
@@ -97,8 +100,7 @@ def generar_capitulo(ai_response:str)->str:
     """Convertir la respuesta de la IA a formato JSON para poder añadirlo a Mongo"""
         # 📌 Llamar a la IA para resumir el texto
     promtp = [
-        {"role": "system", "content": PROMPT_CAPITULOS
-        },
+        {"role": "system", "content": PROMPT_CAPITULOS},
         {"role": "user", "content": ai_response}
     ]
 

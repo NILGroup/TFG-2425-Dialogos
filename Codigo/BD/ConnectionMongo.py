@@ -15,6 +15,12 @@ class ConexionMongoDB:
                 lista_colecciones.append(nombre_coleccion)
         return lista_colecciones
 
+    def eliminar_historia(self, usuario, nombre_historia):
+        """Elimina una historia del usuario"""
+        bd_info = self.client["info_usuarios"]
+        coleccion = bd_info["historias"]
+        coleccion.delete_one({"Usuario": usuario, "Nombre_historia": nombre_historia})
+        self.client.drop_database(nombre_historia)  # Elimina la base de datos de la historia
 
     def info_usuario(self, usuario, nombre_historia, modo, estado_secciones):
         bd_info = self.client["info_usuarios"]
@@ -22,12 +28,19 @@ class ConexionMongoDB:
         existe = coleccion.find_one({"Usuario": usuario, "Nombre_historia": nombre_historia})
         # if existe:
         #     raise Exception("La historia ya existe para este usuario.")
-        coleccion.insert_one({
-            "Usuario": usuario,
-            "Nombre_historia": nombre_historia,
-            "Modo": modo,
-            "Estado_secciones": estado_secciones
-        })
+        if modo == "detallado":
+            coleccion.insert_one({
+                "Usuario": usuario,
+                "Nombre_historia": nombre_historia,
+                "Modo": modo,
+                "Estado_secciones": estado_secciones
+            })
+        else:
+                coleccion.insert_one({
+                "Usuario": usuario,
+                "Nombre_historia": nombre_historia,
+                "Modo": modo,
+            })
 
     def get_story(self, usuario, nombre_historia):
         # Busca la historia del usuario por nombre
@@ -145,13 +158,24 @@ class ConexionMongoDB:
             return doc["Modo"]
         return None  # si no hay modo guardado
 
-    def buscar_contexto_seccion_rapido(self, seccion):
+    def buscar_capitulos_fast(self, seccion):
         doc = self.buscar("Seccion", seccion)
         if doc and "Contenido" in doc:
             return doc["Contenido"]
         else:
             print(f"❌ No se encontró texto para la sección: {seccion}")
         return ""
+    
+    def buscar_capitulo_guardar(self, seccion):
+        doc = self.buscar("Seccion", seccion)
+        if doc:
+            titulo = doc.get("Titulo", "Sin título")
+            contenido = doc.get("Contenido", "")
+            return {"Titulo": titulo, "Contenido": contenido}
+        else:
+            print(f"❌ No se encontró texto para la sección: {seccion}")
+            return {"Titulo": None, "Contenido": ""}
+
 
     def buscar_contexto_seccion(self, seccion):
         """Devulve el contexto de la seccion seleccionada"""

@@ -2,6 +2,7 @@
 from flet_route import Params, Basket
 import flet as ft
 from story.StoryLibrary import StoryLibrary
+from UI.Theme import HISTORIAS_THEME as th
 
 class Home:
     def __init__(self):
@@ -40,7 +41,9 @@ class Home:
         
         def eliminar_historia(nombre):
             def handler(e):
-                print((f"Eliminar historia: {nombre}"))
+                library.delete_story(usuario, nombre)
+                print(f"Historia '{nombre}' eliminada")
+                page.update()
             return handler
 
         def historias_filtradas():
@@ -68,7 +71,7 @@ class Home:
                             ft.Container(
                                 ft.Row([
                                     ft.IconButton(ft.Icons.DELETE, on_click=eliminar_historia(h["nombre"]), icon_color=ft.Colors.RED_400),
-                                    ft.ElevatedButton("Cargar", on_click=cargar_historia(h["nombre"], h["modo"]), bgcolor=ft.Colors.BLUE_400, color=ft.Colors.WHITE),
+                                    ft.ElevatedButton("Cargar", on_click=cargar_historia(h["nombre"], h["modo"]), bgcolor=th["NARANJA"], color=ft.Colors.WHITE),
                                 ], spacing=4),
                                 alignment=ft.alignment.center_right,
                                 margin=ft.margin.only(left=10)
@@ -76,9 +79,11 @@ class Home:
                         ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
                         padding=30,
                         margin=ft.margin.symmetric(vertical=4),
-                        bgcolor=ft.Colors.WHITE,
-                        border_radius=8,
-                        border=ft.border.all(1, ft.Colors.BLUE_GREY_100),
+                        #bgcolor=th["WARNING"],
+                        #bgcolor=ft.Colors.WHITE,
+                        bgcolor=th["LISTA_HISTORIAS"],
+                        border_radius=10,
+                        border=ft.border.all(2, ft.Colors.BLACK12),
                         width=560
                     )
                 )
@@ -119,23 +124,23 @@ class Home:
         card_rapido = ft.Container(
             content=ft.Column([
                 ft.Row([
-                    ft.Icon(ft.Icons.FLASH_ON, color=ft.Colors.BLUE_400, size=32),
+                    ft.Icon(ft.Icons.FLASH_ON, color=th["NARANJA"], size=32),
                     ft.Text("Modo rápido", size=20, weight=ft.FontWeight.BOLD)
                 ], spacing=10),
                 ft.Text("Crea una historia en segundos con pocos datos", size=15, color=ft.Colors.BLUE_GREY_600),
-                ft.ElevatedButton("Empezar rápido", bgcolor=ft.Colors.BLUE_400, color=ft.Colors.WHITE, on_click=lambda e: page.open(dlg_rapido))
+                ft.ElevatedButton("Empezar rápido", bgcolor=th["NARANJA"], color=ft.Colors.WHITE, on_click=lambda e: page.open(dlg_rapido))
             ], spacing=10),
             padding=20,
             bgcolor=ft.Colors.WHITE,
             border_radius=12,
-            border=ft.border.all(1, ft.Colors.BLUE_GREY_100),
+            border=ft.border.all(2, color=th["PRIMARY"]),
             width=350
         )
 
         card_detallado = ft.Container(
             content=ft.Column([
                 ft.Row([
-                    ft.Icon(ft.Icons.EDIT, color=ft.Colors.GREEN_400, size=32),
+                    ft.Icon(ft.Icons.EDIT, color=th["SECONDARY"], size=32),
                     ft.Text("Modo detallado", size=20, weight=ft.FontWeight.BOLD)
                 ], spacing=10),
                 ft.Text("Personaliza paso a paso cada aspecto de tu historia", size=15, color=ft.Colors.BLUE_GREY_600),
@@ -144,7 +149,7 @@ class Home:
             padding=20,
             bgcolor=ft.Colors.WHITE,
             border_radius=12,
-            border=ft.border.all(1, ft.Colors.BLUE_GREY_100),
+            border=ft.border.all(2, color=th["PRIMARY"]),
             width=350
         )
 
@@ -154,6 +159,7 @@ class Home:
             print(f"Crear historia rápida: {nombre_input.value}")
             page.session.set("nombre_bd", nombre_input.value.replace(" ", "_"))
             page.session.set("modo", "rapido")
+            library.create_story(usuario, nombre_input.value.replace(" ", "_"), "rapido", estado_secciones={})
             #page.close(dlg_rapido)
             page.go("/nueva_historia_rapida")
 
@@ -186,38 +192,65 @@ class Home:
         return ft.View(
             route="/home",
             controls=[
-                ft.Row([
-                    # Columna izquierda: historias, bien pegada y con más borde
-                    ft.Container(
-                        content=ft.Column([
-                            ft.Text("Tus historias", size=52, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
-                            filtro,
-                            ft.Container(
-                                content=ft.Column(lista_historias()),
-                                bgcolor=ft.Colors.WHITE,
-                                border_radius=16,
-                                border=ft.border.all(2, ft.Colors.BLUE_GREY_100),
-                                padding=16,
-                                width=600,
-                                height=750
-                            )
-                        ], spacing=20),
-                        margin=ft.margin.only(left=150, top=30, bottom=30, right=0)
-                    ),
-                    # Mucho espacio en el centro
-                    ft.Container(width=160),
-                    # Columna derecha: crear nueva historia, bien a la derecha
-                    ft.Container(
-                        content=ft.Column([
-                            ft.Text("Crear nueva historia", size=32, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
-                            card_rapido,
-                            card_detallado
-                        ], spacing=20),
-                        margin=ft.margin.only(right=40, top=30, bottom=30, left=0)
-                    )
-                ], alignment=ft.MainAxisAlignment.START, vertical_alignment=ft.CrossAxisAlignment.START)
+                ft.Row(
+                    [
+                        # Columna izquierda: historias (se queda como la tenías)
+                        ft.Container(
+                            content=ft.Column(
+                                [
+                                    ft.Text(
+                                        "Mis historias",
+                                        size=52,
+                                        weight=ft.FontWeight.BOLD,
+                                        color=ft.Colors.BLUE_GREY_900,
+                                    ),
+                                    filtro,
+                                    ft.Container(
+                                        content=ft.Column(lista_historias()),
+                                        bgcolor=ft.Colors.WHITE,
+                                        border_radius=16,
+                                        border=ft.border.all(2, color=th["PRIMARY"]),
+                                        padding=16,
+                                        width=600,
+                                        height=750,  # esta altura marca el alto de la fila
+                                    ),
+                                ],
+                                spacing=20,
+                            ),
+                            margin=ft.margin.only(left=150, top=30, bottom=30, right=0),
+                        ),
+
+                        # Separador central
+                        ft.Container(width=160),
+
+                        # Columna derecha: crear nueva historia — centrada en eje Y
+                        ft.Container(
+                            alignment=ft.alignment.center,           # 👈 centra el contenido en su propio alto
+                            expand=True,                              # 👈 ocupa el alto de la fila
+                            margin=ft.margin.only(right=40),          # sin top/bottom para que el centro sea puro
+                            content=ft.Column(
+                                [
+                                    ft.Text(
+                                        "Crear nueva historia",
+                                        size=32,
+                                        weight=ft.FontWeight.BOLD,
+                                        color=ft.Colors.BLUE_GREY_900,
+                                    ),
+                                    card_rapido,
+                                    card_detallado,
+                                ],
+                                spacing=20,
+                                alignment=ft.MainAxisAlignment.CENTER,        # centra hijos en la columna
+                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                            ),
+                        ),
+                    ],
+                    alignment=ft.MainAxisAlignment.START,             # X como lo tenías
+                    vertical_alignment=ft.CrossAxisAlignment.START,   # la izquierda sigue arriba
+                    expand=True,                                      # 👈 la fila ocupa todo el alto de la vista
+                )
             ],
-            bgcolor=ft.Colors.AMBER_50,
+            bgcolor=th["FONDO"],
             vertical_alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         )

@@ -1,6 +1,7 @@
 import flet as ft
 from flet_route import Params, Basket
 import users.UserManager as user_manager
+from UI.Theme import HISTORIAS_THEME as th
 
 class Register:
     def __init__(self):
@@ -93,8 +94,8 @@ class Register:
             icon=ft.Icons.CHECK,
             style=ft.ButtonStyle(
                 shape=ft.RoundedRectangleBorder(radius=25),
-                bgcolor=ft.Colors.WHITE,
-                color=ft.Colors.BLACK,
+                bgcolor=th["SUCCESS"],
+                color=th["TEXT"],
             ),
             on_click=register
         )
@@ -128,7 +129,7 @@ class Register:
                 btn_register,
                 error
             ],
-            bgcolor=ft.Colors.AMBER_50,
+            bgcolor=th["FONDO"],
             vertical_alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )

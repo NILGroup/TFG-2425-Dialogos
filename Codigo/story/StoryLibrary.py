@@ -24,3 +24,6 @@ class StoryLibrary:
 
     def load_story(self, usuario, nombre_historia):
         self.mongo.seleccionar_coleccion(nombre_historia)
+
+    def delete_story(self, usuario, nombre_historia):
+        self.mongo.eliminar_historia(usuario, nombre_historia)

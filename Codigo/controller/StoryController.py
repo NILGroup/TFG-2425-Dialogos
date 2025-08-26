@@ -1,4 +1,4 @@
-from AI.AIManager import get_ai_response, generar_JSON_mongo, get_ai_response_fast, generar_capitulo, generar_JSON_capitulo_mongo, generar_resumen, generar_resumen_capitulo
+from AI.AIManager import *
 from story.StoryStorage import StoryStorage
 import story.StoryFormatter as sf
 from transformers import AutoTokenizer
@@ -41,6 +41,9 @@ class StoryController:
             print(f"Estado_secciones: {self.estado_secciones}")
             #print(f"Seccion: {self.seccion}")
             
+    def guardar_en_pdf(self, nombre_archivo):
+        self.storage.historia_a_pdf(nombre_archivo)
+
 
     def next_chapter(self):
         self.chapter += 1
@@ -100,10 +103,24 @@ class StoryController:
         print(f"Estado de secciones: {self.estado_secciones}")
         if seccion == "escritura":
             self.contexto = self.storage.crear_contexto_capitulo(self.chapter)
-            print("\n\nContexto capitulo: ", self.contexto)
             num, palabras, relacion = self.contar_tokens(self.contexto)
             print(f"\n\nTokens: {num}, Palabras: {palabras}, Relación: {relacion:.2f}")
-            ai_response = generar_capitulo(self.contexto)
+            if self.chapter == 4:
+                mensaje = (
+                    f"\nLos capítulos anteriores son:\n{self.contexto}\n"
+                    f"Los capitulos anteriores son: capitulo 1, capitulo 2 y capitulo 3\n"
+                    f"Debes TERMINAR la historia con el CAPÍTULO {self.chapter}. "
+                    f"Este capítulo debe ser el FINAL de la historia. "
+                    f"No repitas capítulos anteriores ni reinicies desde el 1."
+                )
+            else:
+                mensaje = (
+                    f"\nLos capítulos anteriores son:\n{self.contexto}\n"
+                    f"El capítulo anterior es el: {self.chapter-1}\n"
+                    f"Continúa la historia con el CAPÍTULO {self.chapter}. "
+                )
+            print("\n\nContexto capitulo: ", mensaje)
+            ai_response = generar_capitulo(mensaje)
             self.next_chapter()
         else:
             print("La seccion es: ", seccion)
@@ -183,10 +200,22 @@ class StoryController:
         self.guardar_datos(ai_response, seccion)
         return ai_response
     
-    def procesar_mensaje_rapido(self, datos_encuesta, capitulo):
-        contexto = self.storage.contexto_capitulo_rapido(capitulo)
-        mensaje = f"La informacion de la historia es:\n {datos_encuesta}\nLos capitulos anteriores son:\n{contexto}\nContinua la historia con el capitulo {capitulo}"
-        print(f"------------- MENSAJE --------------\n\n{mensaje}")
+    def procesar_mensaje_rapido(self, datos_encuesta, capitulo, accion, user_input):
+        if accion == "continuar":
+            contexto = self.storage.contexto_capitulo_rapido(capitulo)
+            if capitulo == 4:
+                mensaje = f"La información de la historia es:\n{datos_encuesta}\nLos capítulos anteriores son:\n{contexto}\nTermina la historia con el capítulo {capitulo}"
+            else:
+                mensaje = f"La información de la historia es:\n{datos_encuesta}\nLos capítulos anteriores son:\n{contexto}\nContinúa la historia con el capítulo {capitulo}"
+
+            print(f"------------- MENSAJE --------------\n\n{mensaje}")
+        elif accion == "modificar":
+            capitulo_actual = self.storage.capitulo_fast(capitulo)
+            mensaje = f"Este es el capitulo:\n{capitulo_actual}\nQuiero modificar esto:{user_input}\n\nVuelve a escribir el capitulo: {capitulo_actual}\n\n"
+        else:
+            capitulo_actual = self.storage.capitulo_fast(capitulo)
+            mensaje = f"Este es el capitulo:\n{capitulo}\nNo me ha gustado quiero que lo cambies. Escribe el capitulo: {capitulo}\n\n"
+
         ai_response = get_ai_response_fast([{"role": "user", "content": mensaje}])
         ai_json = generar_JSON_capitulo_mongo(ai_response)
         capitulo_json = sf.JSON_formateado(ai_json)

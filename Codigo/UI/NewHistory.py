@@ -5,6 +5,7 @@ from controller.StoryController import StoryController
 import re
 import time
 import pyperclip
+from UI.Theme import HISTORIAS_THEME as th
 
 
 class NuevaHistoria:
@@ -23,7 +24,8 @@ class NuevaHistoria:
     def view(self, page: ft.Page, params:Params, basket:Basket):
         controller = StoryController(page, True)
         usuario = page.session.get("username")
-        page.theme_mode = ft.ThemeMode.LIGHT
+
+        page.theme_mode = ft.ThemeMode.LIGHT         # o ft.ThemeMode.DARK                 
         SIZE_BODY = 18       # tamaño del texto de detalle
         SIZE_HEADING = 20    # títulos de sección (si quieres subirlos)
 
@@ -243,7 +245,8 @@ class NuevaHistoria:
             center_title=True,
             actions=[
                 mi_usuario,
-            ]  # 👈 se muestra a la derecha
+            ],  # 👈 se muestra a la derecha
+            bgcolor=th["FONDO"]
         )
         
         # def send_message(e):
@@ -333,8 +336,9 @@ class NuevaHistoria:
             entrada.value = ""
 
             zona_carga.visible = True
-            entrada.disabled = True
-            btn_send.disabled = True
+            # entrada.visible = False
+            # btn_send.visible = False
+            panel_entrada.visible = False
             btn_copy.disabled = True
             lista_btn.visible = False
             mensajes.controls.append(ft.Text(f"Tu: {prompt}"))
@@ -419,25 +423,15 @@ class NuevaHistoria:
             expand=True
         )
 
-
-        zona_carga = ft.Container(
-            content=cargando,
-            visible=False,
-            alignment=ft.alignment.center,
-            bgcolor=ft.Colors.with_opacity(0.5, ft.Colors.SURFACE),
-            #visible=False,  # 👈 ¡clave!
-            expand=True
-
-        )
-
         zona_historia = ft.Container(
             content=mensajes,
             border_radius=15,
             padding=20,
             alignment=ft.alignment.center,
             width=None,
-            bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
-            border=ft.border.all(1, ft.Colors.OUTLINE),
+            bgcolor=ft.Colors.GREY_200,
+            #bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
+            border=ft.border.all(2, ft.Colors.OUTLINE),
             visible=True,
             expand=True
         )
@@ -447,10 +441,16 @@ class NuevaHistoria:
             multiline=False,
             autofocus=True,
             border=ft.InputBorder.OUTLINE,
+            border_radius=28,
+            content_padding=ft.Padding(22, 20, 22, 20),  # más espacio interno
+            focused_border_color=th["TEXT"],
             suffix_icon=btn_send,
-            width=400,
-            on_submit=send_message
+            width=800,                # más ancho
+            height=70,                # fuerza altura mayor
+            text_size=20,              # aumenta tamaño de la letra
+            on_submit=send_message,
         )
+
 
         campo_modificar = ft.TextField(
             hint_text="¿Que cambio quieres hacer en la sección?",
@@ -459,13 +459,13 @@ class NuevaHistoria:
             border=ft.InputBorder.OUTLINE,
             suffix_icon=btn_send,
             width=400,
-            on_submit=send_message
+            #on_submit=send_message
         )
 
         def button_accept(e):
             page.close(modificar_dialog)
             mensaje = campo_modificar.value.strip()  # Limpiar el campo de entrada
-            send_message(e, prompt_override=mensaje, accion="modificar")
+            continuar_capitulo(e, prompt_override=mensaje, accion="modificar")
 
         modificar_dialog = ft.AlertDialog(
             modal=True,
@@ -525,6 +525,26 @@ class NuevaHistoria:
             actions_alignment=ft.MainAxisAlignment.END
         )
 
+        
+
+        panel_entrada = ft.Container(
+            content=ft.Column(
+                controls=[
+                    ft.Text(
+                        "Comienza tu historia con con una idea y desarrollala lo que quieras",
+                        size=24,
+                        weight=ft.FontWeight.BOLD,
+                        color=th["TEXT"],
+                    ),
+                    entrada],
+                spacing=10,
+                alignment=ft.MainAxisAlignment.CENTER
+            ),
+            padding=12,
+            border_radius=24,
+        )
+
+
         def continuar_historia(e):
             print("Continuar con la historia")
             page.open(confirm_tittle)
@@ -534,7 +554,6 @@ class NuevaHistoria:
             [
             ft.ElevatedButton("Modificar", on_click=lambda e: modificar_historia(e)),
             ft.ElevatedButton("Reescribir", on_click=lambda e: reescribir_historia(e)),
-            ft.ElevatedButton("Continuar", on_click=lambda e: continuar_historia(e))
             ],
             spacing=10,
             alignment=ft.MainAxisAlignment.START,
@@ -546,12 +565,15 @@ class NuevaHistoria:
             return ft.Container(content=ctrl, expand=1)
 
         zona_stack = ft.Stack(
+            alignment=ft.alignment.center,   # centra a los hijos no posicionados
             controls=[
-                zona_historia,  # fondo: contenido
-                zona_carga,      # capa superior: spinner
+                zona_historia,               # capa base (ocupa todo)
+                panel_entrada,               # solo ocupa su propio ancho -> no bloquea el scroll
+                zona_carga,                  # overlay de carga por encima
             ],
-            expand=True
+            expand=True,
         )
+
 
         # titulo_dinamico = ft.Text(titulo_seccion_text(self.seccion_actual), weight=ft.FontWeight.BOLD, size=16)
         # acciones_seccion = ft.Row(
@@ -881,15 +903,88 @@ class NuevaHistoria:
             icon=ft.Icons.TUNE,
             on_click=lambda e: page.open(confirm_escritura),   # ← abre confirm
             disabled=True,
-            height=44
+            height=44,
+            expand=True,
         )
 
         # --- BOTONES CAPITULOS
-        btn_continuar_historia = ft.ElevatedButton("Continuar", icon=ft.Icons.TUNE, on_click=lambda e:  continuar_capitulo(e),  disabled=True, height=44)
-        
+        btn_continuar_historia = ft.ElevatedButton("Continuar", visible=False, icon=ft.Icons.TUNE, on_click=lambda e:  continuar_capitulo(e),  disabled=True, height=44)
+        # btn_capitulo_1 = ft.ElevatedButton("Capitulo 1", visible=False, icon=ft.Icons.VISIBILITY, on_click=lambda e:  continuar_capitulo(e),  disabled=True, height=44)
+        # btn_capitulo_2 = ft.ElevatedButton("Capitulo 2", visible=False, icon=ft.Icons.VISIBILITY, on_click=lambda e:  continuar_capitulo(e),  disabled=True, height=44)
+        # btn_capitulo_3 = ft.ElevatedButton("Capitulo 3", visible=False, icon=ft.Icons.VISIBILITY, on_click=lambda e:  continuar_capitulo(e),  disabled=True, height=44)
+        # btn_capitulo_4 = ft.ElevatedButton("Capitulo 4", visible=False, icon=ft.Icons.VISIBILITY, on_click=lambda e:  continuar_capitulo(e),  disabled=True, height=44)
+        btn_fin_historia = ft.ElevatedButton(
+            "Finalizar",
+            visible=False,
+            icon=ft.Icons.FLAG,
+            disabled=True,
+            height=44,
+            on_click=lambda e: abrir_confirm_fin(e)
+        )
+
+        # --- POPUP de finalización ---
+        def abrir_confirm_fin(e):
+            page.open(confirm_fin)
+
+        def guardar_y_salir(e):
+            # cierra el popup
+            page.close(confirm_fin)
+            # ⇩ guarda (ajusta al método real de tu controller)
+            try:
+                nombre_pdf = f"{nombre_historia}.pdf"
+                controller.guardar_en_pdf(nombre_pdf)
+                # Ejemplos posibles: elige el que tengas implementado
+                # controller.guardar_historia_completa()
+                # controller.exportar_historia(nombre_historia)
+                # controller.cerrar_y_guardar(self.capitulo_actual)
+                pass
+                page.snack_bar = ft.SnackBar(ft.Text("Historia guardada correctamente."))
+            except Exception as ex:
+                page.snack_bar = ft.SnackBar(ft.Text(f"No se pudo guardar: {ex}"))
+            page.snack_bar.open = True
+            page.update()
+            page.go("/home")  # volver a inicio
+
+        def salir_sin_guardar(e):
+            page.close(confirm_fin)
+            page.go("/home")
+
+        confirm_fin = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("Finalizar historia"),
+            content=ft.Text("¿Deseas guardar la historia antes de salir?"),
+            actions=[
+                ft.ElevatedButton("Guardar y salir", icon=ft.Icons.SAVE, on_click=guardar_y_salir),
+                ft.TextButton("Salir sin guardar", icon=ft.Icons.EXIT_TO_APP, on_click=salir_sin_guardar),
+                ft.TextButton("Cancelar", on_click=lambda e: page.close(confirm_fin)),
+            ],
+            actions_alignment=ft.MainAxisAlignment.END,
+        )
+
+
+        def mostrar_fin():
+            page.snack_bar = ft.SnackBar(ft.Text("¡Has terminado la historia!"))
+            page.snack_bar.open = True
+            page.update()
+
+
+
+
         # Título y zona dinámica que ya tenías
         titulo_dinamico = ft.Text(titulo_seccion_text(self.seccion_actual), weight=ft.FontWeight.BOLD, size=SIZE_HEADING)
-        contenedor_seccion = ft.Column(spacing=8)
+        contenedor_instrucciones = ft.Column(
+            controls=[
+                ft.Text("📖 Instrucciones básicas", weight=ft.FontWeight.BOLD, size=22),
+                ft.ListTile(leading=ft.Icon(ft.Icons.LIGHTBULB), title=ft.Text("Introduce una idea inicial o temática.")),
+                ft.ListTile(leading=ft.Icon(ft.Icons.CATEGORY), title=ft.Text("Genera las secciones principales de la historia.")),
+                ft.ListTile(leading=ft.Icon(ft.Icons.CATEGORY), title=ft.Text("Una vez completadas, activa la opción Escritura para comenzar los capítulos.")),
+                ft.ListTile(leading=ft.Icon(ft.Icons.BOOK), title=ft.Text("Avanza capítulo a capítulo con 'Continuar'.")),
+                ft.ListTile(leading=ft.Icon(ft.Icons.EDIT), title=ft.Text("Usa 'Modificar' o 'Reescribir' para hacer cambios.")),
+                ft.ListTile(leading=ft.Icon(ft.Icons.FLAG), title=ft.Text("Finaliza la historia en el capítulo 4.")),
+            ],
+            spacing=4
+        )
+
 
         # --- Vista principal (main) del panel derecho
         panel_main = ft.Column([
@@ -898,16 +993,19 @@ class NuevaHistoria:
             ft.Text("Ver", size=12, color=ft.Colors.ON_SURFACE_VARIANT),
             ft.Row([cell(btn_mundo_ver),      cell(btn_personajes_ver)], spacing=10),
             ft.Row([cell(btn_escenarios_ver), cell(btn_estructura_ver)], spacing=10),
+            # ft.Row([cell(btn_capitulo_1),      cell(btn_capitulo_2)], spacing=10),
+            # ft.Row([cell(btn_capitulo_3), cell(btn_capitulo_4)], spacing=10),
 
             ft.Container(height=8),
             ft.Text("Generar", size=12, color=ft.Colors.ON_SURFACE_VARIANT),
             ft.Row([cell(btn_mundo_gen),      cell(btn_personajes_gen)], spacing=10),
             ft.Row([cell(btn_escenarios_gen), cell(btn_estructura_gen)], spacing=10),
-            ft.Row([cell(btn_escritura),      cell(ft.Container())],     spacing=10),  # segundo hueco vacío para alinear
-            ft.Row([cell(btn_continuar_historia), cell(ft.Container())], spacing=10),
+            # Solo muestra btn_escritura si no es el capítulo 4, y btn_fin_historia si es el capítulo 4
+            ft.Row([cell(btn_escritura), cell(btn_continuar_historia)], spacing=10),
+            # y mantén btn_fin_historia en otra celda o en la misma fila:
+            ft.Row([cell(btn_fin_historia)], spacing=10),
             ft.Divider(height=16, thickness=1, color=ft.Colors.OUTLINE),
-            #titulo_dinamico,
-            contenedor_seccion,
+            contenedor_instrucciones,
         ], spacing=10)
 
                 # Qué secciones hacen falta para habilitar "Escritura"
@@ -968,7 +1066,8 @@ class NuevaHistoria:
             border_radius=15,
             padding=20,
             width=320,
-            expand=1
+            expand=1,
+            bgcolor=ft.Colors.GREY_300
         )
 
         # Coloca el panel a la derecha
@@ -1023,15 +1122,41 @@ class NuevaHistoria:
             # Enviamos y PASAMOS 'seccion' para actualizar el título al final
             send_message(e, prompt_override=prompt, seccion=seccion)
 
+        def actualizar_boton_fin():
+            # Estamos en modo escritura y queremos que, si cap==4, aparezca "Finalizar"
+            if self.capitulo_actual >= 4:
+                self.capitulo_actual = 4  # por si alguien intenta pasar de 4
+                btn_continuar_historia.visible = False
+                btn_continuar_historia.disabled = True
+
+                btn_fin_historia.visible = True
+                btn_fin_historia.disabled = False
+            else:
+                btn_fin_historia.visible = False
+                btn_fin_historia.disabled = True
+
+                btn_continuar_historia.visible = True
+                btn_continuar_historia.disabled = False
+            page.update()
+
 
         def aceptar_escritura(e):
-            capitulo = self.capitulo_actual
-            seccion = self.seccion_actual
-            prompt = f"Vamos a escribir el capitulo {capitulo}"
-            send_message(e, prompt_override=prompt, seccion=seccion)
+            #seccion = self.seccion_actual
+            btn_escenarios_gen.visible = False
+            btn_mundo_gen.visible = False
+            btn_personajes_gen.visible = False
+            btn_estructura_gen.visible = False
+            btn_continuar_historia.visible = True
+            actualizar_boton_fin()
+            prompt = f"Vamos a escribir el capitulo {self.capitulo_actual}"
+            send_message(e, prompt_override=prompt, seccion="escritura")
 
         def continuar_capitulo(e):
-            self.capitulo_actual +1
+            self.capitulo_actual += 1
+            if self.capitulo_actual == 4:
+                btn_continuar_historia.visible = False
+                btn_fin_historia.visible = True
+            actualizar_boton_fin()
             aceptar_escritura(e)
 
         # crea el diálogo una sola vez (pégalo cerca de donde defines btn_save)
@@ -1066,7 +1191,8 @@ class NuevaHistoria:
             for b in [
                 btn_mundo_ver, btn_personajes_ver, btn_escenarios_ver, btn_estructura_ver,
                 btn_mundo_gen, btn_personajes_gen, btn_escenarios_gen, btn_estructura_gen,
-                btn_escritura, btn_continuar_historia
+                btn_escritura, btn_continuar_historia, 
+                #btn_capitulo_1, btn_capitulo_2, btn_capitulo_3, btn_capitulo_4
             ]:
                 b.disabled = True
             page.update()
@@ -1075,7 +1201,8 @@ class NuevaHistoria:
         def habilitar_botones_secciones():
             for b in [
                 btn_mundo_ver, btn_personajes_ver, btn_escenarios_ver, btn_estructura_ver,
-                btn_mundo_gen, btn_personajes_gen, btn_escenarios_gen, btn_estructura_gen, btn_continuar_historia
+                btn_mundo_gen, btn_personajes_gen, btn_escenarios_gen, btn_estructura_gen, btn_continuar_historia,
+                #btn_capitulo_1, btn_capitulo_2, btn_capitulo_3, btn_capitulo_4
             ]:
                 b.disabled = False
             page.update()
@@ -1092,17 +1219,8 @@ class NuevaHistoria:
                         #zona_historia,
                         zona_stack_row,
                         lista_btn,  # Botones de acción
-                        ft.Container(  # campo en la parte inferior
-                            padding=10,
-                             content=ft.Row(
-                                controls=[
-                                    entrada,  # Hace que el campo ocupe el máximo espacio posible
-                                    btn_copy               # El botón va a la derecha del campo
-                                ],
-                            ),
-                            bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST
-                        )
                     ]
                 )
-            ]
+            ],
+            bgcolor=th["MORADO_HISTORIA"]
         )

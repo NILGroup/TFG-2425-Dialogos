@@ -12,7 +12,7 @@ from UI.LoadHistory import CargarHistoria
 
 
 def main(page:ft.Page):
-    page.title="Creador de historias"
+    page.title="historIAs"
     app_routes = [
         path(url="/", clear=True, view=Login().view),
         path(url="/register", clear=True, view=Register().view),

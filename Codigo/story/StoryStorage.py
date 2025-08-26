@@ -2,6 +2,7 @@ from BD.ConnectionMongo import ConexionMongoDB
 import unicodedata
 import difflib
 import os
+from fpdf import FPDF
 
 class StoryStorage:
     def __init__(self, nombre_historia: str):
@@ -137,23 +138,60 @@ class StoryStorage:
 
 
     def buscar_resumen_capitulos(self):
-        capitulos = ""
-        self.mongo.seleccionar_coleccion("resumen")
-        if self.mongo.hay_documentos():
-            documentos = self.mongo.buscar_resumenes("resumen")
-            resumenes = [doc.get("Resumen") for doc in documentos if "Resumen" in doc]
-            for resumen in resumenes:
-                capitulos += f"\n{resumen}"
-            return capitulos
-        else:
-            return ""
+        """
+        Devuelve un texto con los resúmenes (o snippet del contenido) de capitulo_1..capitulo_4,
+        usando solo los métodos públicos de ConexionMongoDB (sin acceder a .collection.find()).
+        """
+        self.mongo.seleccionar_coleccion("escritura")
+
+        capitulos_txt = []
+        for i in range(1, 5):  # TIENE QUE TENER 4 CAPITULOS
+            seccion = f"capitulo_{i}"
+            doc = self.mongo.buscar("Seccion", seccion)  # usa el wrapper, no .find directo
+
+            if not doc:
+                # Si falta el capítulo, lo saltamos (o añade un marcador si prefieres)
+                continue
+
+            titulo = doc.get("Titulo") or seccion
+            resumen = doc.get("Resumen")
+
+            if not resumen:
+                contenido = (doc.get("Contenido") or "").strip()
+                # si no hay Resumen, usamos un snippet del Contenido
+                if contenido:
+                    resumen = contenido[:500] + ("…" if len(contenido) > 500 else "")
+                else:
+                    resumen = "(Sin resumen ni contenido disponible)"
+
+            capitulos_txt.append(f"[{seccion}] {titulo}\n{resumen}")
+
+        return "\n\n".join(capitulos_txt)
+
+
+        
+    def buscar_capitulos(self, capitulo):
+        contexto = ""
+        self.mongo.seleccionar_coleccion("escritura")
+        for i in range(1, capitulo):
+            num_capitulo = f"capitulo_{i}"
+            texto = self.mongo.buscar_capitulos_fast(num_capitulo)
+            if texto:
+                contexto += f"\n[Capítu(lo {i}]\n{texto}\n"
+        return contexto.strip()
+    
+    def capitulo_fast(self, capitulo):
+        self.mongo.seleccionar_coleccion("capitulos")
+        num_capitulo = f"capitulo_{capitulo}" 
+        contenido = self.mongo.buscar_capitulos_fast(num_capitulo)
+        return contenido
 
     def contexto_capitulo_rapido(self, capitulo: int):
         contexto = ""
         self.mongo.seleccionar_coleccion("capitulos")
         for i in range(1, capitulo):
             num_capitulo = f"capitulo_{i}"
-            texto = self.mongo.buscar_contexto_seccion_rapido(num_capitulo)
+            texto = self.mongo.buscar_capitulos_fast(num_capitulo)
             if texto:
                 contexto += f"\n[Capítulo {i}]\n{texto}\n"
         return contexto.strip()
@@ -165,7 +203,8 @@ class StoryStorage:
         lista_escenarios = self.escenarios_capitulo(capitulo)
         personajes = self.buscar_personajes(lista_personajes)
         escenarios = self.buscar_escenarios(lista_escenarios)
-        capitulos = self.buscar_resumen_capitulos()
+        capitulos = self.buscar_capitulos(capitulo)
+        #capitulos = self.buscar_resumen_capitulos()
         contexto = f"{dependencias} \n\n Capitulo: {capitulo} \n Nombre: {nombre} \n {sinopsis}\n Personajes: {personajes} \n Escenarios: {escenarios} \n Resumen capitulos: {capitulos}"
         return contexto.replace("\n", " ")
     
@@ -238,6 +277,27 @@ class StoryStorage:
                 self.mongo.eliminar("Seccion", seccion)
         self.mongo.insertar(resumen)
 
+    def guardar_historia(self):
+        self.mongo.seleccionar_coleccion("escritura")
+        historia = ""
+        for i in range(1, 5):  # Aseguramos que haya 4 capítulos
+            num_capitulo = f"capitulo_{i}"
+            capitulo = self.mongo.buscar_capitulo_guardar(num_capitulo)
+            historia += f"Capitulo {i}\nTitulo: {capitulo['Titulo']}\nContenido: {capitulo['Contenido']}\n\n\n"
+        return historia.strip()
+
+
+    def historia_a_pdf(self, nombre_archivo):
+        texto = self.guardar_historia()
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+        pdf.multi_cell(0, 10, texto)
+        pdf.output(nombre_archivo)
+
+    def eliminar_historia(self, usuario, nombre_historia):
+        self.mongo.seleccionar_coleccion()
+
     def buscar_dependencias_bd(self, seccion_actual: str) -> str:
         secciones_necesarias = self.dependencias.get(seccion_actual, [])
         print("Dependencias necesarias:", secciones_necesarias)
@@ -277,6 +337,9 @@ class StoryStorage:
 
     def guardar_capitulo(self, capitulo):
         self.mongo.seleccionar_coleccion("capitulos")
+        num_capitulo = f"capitulo_{capitulo}"
+        if self.mongo.buscar("Seccion", num_capitulo):
+            self.mongo.eliminar("Seccion", num_capitulo)
         self.mongo.insertar(capitulo)
 
 
