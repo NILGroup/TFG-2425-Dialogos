@@ -3,15 +3,17 @@ from groq import Groq
 import AI.Utils as Utils
 import json
 
-groqKey = "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"
-client = Groq(api_key="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")
+groq_key = "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"
+#groq_key = "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"
+#groq_key = "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"
+client = Groq(api_key=groq_key)
 
-PROMPT_INICIAL = Utils.PROMPT_INICIAL
+PROMPT_INICIAL = Utils.PROMPT_DETALLADO
 PROMPT_JSON = Utils.PROMPT_JSON
 PROMPT_INCIAL_RAPIDO = Utils.PROMPT_ESCRITURA_RAPIDA
-PROMP_TEXTO = Utils.PROMPT_TEXTO
+#PROMP_TEXTO = Utils.PROMPT_TEXTO
 PROMPT_CAPITULOS = Utils.PROMPT_CAPITULOS
-PROMPT_ESCRITURA_JSON = Utils.PROMPT_ESCRITURA_JSON
+#PROMPT_ESCRITURA_JSON = Utils.PROMPT_ESCRITURA_JSON
 PROMPT_RESUMEN_CAPITULO = Utils.PROMPT_RESUMEN_CAPITULO
 PROMPT_RESUMEN = Utils.PROMPT_RESUMEN
 PROMPT_CAPITULO_A_JSON = Utils.PROMPT_CAPITULO_A_JSON
@@ -30,7 +32,7 @@ def get_ai_response(messages:str)->str:
 
     completion = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        #model="llama3-70b-8192",
+        #model="deepseek-r1-distill-llama-70b",
         messages=messages,
         temperature=0.8,
         max_tokens=4096,
@@ -52,7 +54,7 @@ def get_ai_response_fast(messages: str)->str:
 
     completion = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        #model="llama3-70b-8192",
+        #model="deepseek-r1-distill-llama-70b",
         messages=messages,
         temperature=0.7,
         max_tokens=4096,
@@ -66,7 +68,7 @@ def get_ai_response_fast(messages: str)->str:
 def get_ai_response_others(messages):
     completion = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        #model="llama3-70b-8192",
+        #model="deepseek-r1-distill-llama-70b",
         messages=messages,
         temperature=0.7,
         max_tokens=4096,

@@ -118,10 +118,14 @@ class Register:
             center_title=True,
         )
 
+
+
         return ft.View(
             route="/register",
             controls=[
                 page.appbar,
+                ft.Text("Registro", size=30, weight=ft.FontWeight.BOLD, color=th["TEXT"]),
+                ft.Text("Crea una cuenta para empezar a crear historias", size=15, color=th["TEXT"]),
                 usuario,
                 correo,
                 contrasena,

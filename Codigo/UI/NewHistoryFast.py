@@ -3,6 +3,7 @@ from flet_route import Params, Basket
 import threading
 from controller.StoryController import StoryController
 import re
+from UI.Theme import HISTORIAS_THEME as th
 
 class NuevaHistoriaRapida:
     def __init__(self):
@@ -88,7 +89,10 @@ class NuevaHistoriaRapida:
         )
 
         # Estado de la vista
-        estado = {"pantalla": "cuestionario"}  # cuestionario | cargando | resultado
+        estado = {
+            "pantalla": "cuestionario",
+            "fin_visibel": False
+        }  # cuestionario | cargando | resultado
         historia_generada = {"titulo": "", "texto": ""}
 
         seleccion = ft.Text(value="Elige algo...")
@@ -160,14 +164,54 @@ class NuevaHistoriaRapida:
                 "Crea una historia a partir de estos datos."
             )
             # Lanzar la generación en segundo plano
-            threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta, "continuar", "")).start()
+            threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta, "continuar")).start()
+
+        def parse_respuesta_md(respuesta: str):
+            """
+            Renderiza SOLO **negrita** del Markdown.
+            Cada línea del texto se convierte en un ft.Text con spans.
+            """
+            controles = []
+            for linea in (respuesta or "").splitlines():
+                if linea.strip() == "":
+                    controles.append(ft.Container(height=8))
+                    continue
+
+                spans = []
+                idx = 0
+                for m in re.finditer(r"\*\*(.+?)\*\*", linea):
+                    if m.start() > idx:
+                        spans.append(ft.TextSpan(linea[idx:m.start()]))
+                    spans.append(
+                        ft.TextSpan(
+                            m.group(1),
+                            style=ft.TextStyle(weight=ft.FontWeight.BOLD)
+                        )
+                    )
+                    idx = m.end()
+
+                if idx < len(linea):
+                    spans.append(ft.TextSpan(linea[idx:]))
+
+                controles.append(
+                    ft.Text(
+                        spans=spans,
+                        selectable=True,
+                        size=18,
+                        color=ft.Colors.BLACK,
+                        text_align=ft.TextAlign.LEFT,
+                    )
+                )
+            return controles
+
+
 
         btn_generar = ft.ElevatedButton(
             text="¡Generar historia!",
             icon=ft.Icons.AUTO_STORIES,
             on_click=generar_historia,
             style=ft.ButtonStyle(
-                bgcolor=ft.Colors.BLUE_500,
+                bgcolor=th["SUCCESS"],
                 color=ft.Colors.WHITE,
                 padding=20,
                 shape=ft.RoundedRectangleBorder(radius=15)
@@ -236,17 +280,12 @@ class NuevaHistoriaRapida:
             expand=True,
         )
 
-        def siguiente_capitulo(e):
-            self.capitulo += 1
-            generar_historia(e)  # Reutiliza la lógica de generación
-
-
         # Pantalla de resultado (tarjeta)
         def resultado_historia():
             cabecera = ft.Row(
                 [
                     ft.Icon(ft.Icons.MENU_BOOK, size=36, color=ft.Colors.ORANGE_400),
-                    ft.Text(historia_generada["titulo"], size=26, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
+                    ft.Text(historia_generada["titulo"], size=35, weight=ft.FontWeight.BOLD, color=ft.Colors.BLUE_GREY_900),
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
             )
@@ -256,17 +295,9 @@ class NuevaHistoriaRapida:
 
             zona_historia_fast = ft.Container(
                 content=ft.Column(
-                    controls=[
-                        ft.Text(
-                            historia_generada["texto"],
-                            size=18,
-                            color=ft.Colors.BLACK,
-                            selectable=True,
-                            text_align=ft.TextAlign.LEFT,
-                        )
-                    ],
-                    scroll=ft.ScrollMode.ALWAYS,  # scroll en el Column
-                    spacing=0,
+                    controls=parse_respuesta_md(historia_generada["texto"]),
+                    scroll=ft.ScrollMode.ALWAYS,
+                    spacing=6,
                     expand=True,
                 ),
                 width=ANCHO_BOX,                        # <- ancho fijo
@@ -279,24 +310,83 @@ class NuevaHistoriaRapida:
 
             fila_centrada = ft.Row([zona_historia_fast], alignment=ft.MainAxisAlignment.CENTER, expand=True)
 
-            botones = ft.Row(
-                [
-                    ft.ElevatedButton(
-                        "Reescribir",
-                        icon=ft.Icons.CONTENT_COPY,
-                        on_click=lambda e: page.set_clipboard(historia_generada["texto"])
-                    ),
-                    ft.ElevatedButton(
+            # --- POPUP de finalización ---
+            def abrir_confirm_fin(e):
+                page.open(confirm_fin)
+
+            def guardar_y_salir(e):
+                # cierra el popup
+                page.close(confirm_fin)
+                # ⇩ guarda (ajusta al método real de tu controller)
+                try:
+                    nombre_pdf = f"{nombre_historia}.pdf"
+                    controller.guardar_en_pdf_rapida(nombre_pdf)
+                    # Ejemplos posibles: elige el que tengas implementado
+                    # controller.guardar_historia_completa()
+                    # controller.exportar_historia(nombre_historia)
+                    # controller.cerrar_y_guardar(self.capitulo_actual)
+                    pass
+                    page.snack_bar = ft.SnackBar(ft.Text("Historia guardada correctamente."))
+                except Exception as ex:
+                    page.snack_bar = ft.SnackBar(ft.Text(f"No se pudo guardar: {ex}"))
+                page.snack_bar.open = True
+                page.update()
+                page.go("/home")  # volver a inicio
+
+            def salir_sin_guardar(e):
+                page.close(confirm_fin)
+                page.go("/home")
+
+            confirm_fin = ft.AlertDialog(
+                modal=True,
+                title=ft.Text("Finalizar historia"),
+                content=ft.Text("¿Deseas guardar la historia antes de salir?"),
+                actions=[
+                    ft.ElevatedButton("Guardar y salir", icon=ft.Icons.SAVE, on_click=guardar_y_salir),
+                    ft.TextButton("Salir sin guardar", icon=ft.Icons.EXIT_TO_APP, on_click=salir_sin_guardar),
+                    ft.TextButton("Cancelar", on_click=lambda e: page.close(confirm_fin)),
+                ],
+                actions_alignment=ft.MainAxisAlignment.END,
+            )
+
+            btn_fin_historia = ft.ElevatedButton(
+                "Finalizar",
+                icon=ft.Icons.FLAG,
+                visible=estado.get("fin_visible", False),
+                disabled=not estado.get("fin_visible", False),
+                height=44,
+                on_click=lambda e: abrir_confirm_fin(e),
+            )
+
+            btn_continuar = ft.ElevatedButton(
+                "Continuar",
+                icon=ft.Icons.AUTO_STORIES,
+                on_click=lambda e: continuar_capitulo(e, capitulo=self.capitulo, accion="continuar"),
+                visible=not estado.get("fin_visible", False),
+                disabled=estado.get("fin_visible", False),
+            ) # NUEVO
+
+
+            # btn_reescribir =   ft.ElevatedButton(
+            #             "Reescribir",
+            #             icon=ft.Icons.CONTENT_COPY,
+            #             on_click=lambda e: page.set_clipboard(historia_generada["texto"]),
+            #             disabled=False,
+            #             )
+            
+            btn_modificar =  ft.ElevatedButton(
                         "Modificar",
-                        icon=ft.Icons.ARROW_BACK,
+                        icon=ft.Icons.EDIT,
                         style=ft.ButtonStyle(bgcolor=ft.Colors.ORANGE_400, color=ft.Colors.WHITE),
                         on_click=lambda e: actualizar_capitulo(e)
-                    ),
-                    ft.ElevatedButton(
-                        "Continuar",
-                        icon=ft.Icons.AUTO_STORIES,
-                        on_click=lambda e: continuar_capitulo(e)
-                    ),
+                    )
+
+            botones = ft.Row(
+                [
+                    #btn_reescribir,
+                    #btn_modificar,
+                    btn_continuar,
+                    btn_fin_historia,
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
                 spacing=16,
@@ -315,13 +405,13 @@ class NuevaHistoriaRapida:
 
             def button_reescribir(e):
                 self.capitulo = self.capitulo -1
-                continuar_capitulo(e, accion="reescribir")
+                continuar_capitulo(e, capitulo=self.capitulo, accion="reescribir")
 
             def button_accept(e):
                 page.close(modificar_dialog)
                 self.capitulo = self.capitulo -1
                 mensaje = campo_modificar.value.strip()  # Limpiar el campo de entrada
-                continuar_capitulo(e, accion="modificar", user_input=mensaje)
+                continuar_capitulo(e, capitulo=self.capitulo, accion="modificar", user_input=mensaje)
 
             modificar_dialog = ft.AlertDialog(
                 modal=True,
@@ -342,7 +432,7 @@ class NuevaHistoriaRapida:
                 campo_modificar.value = ""  # Limpiar el campo de entrada
                 page.open(modificar_dialog)  # Abrir el diálogo de modificación
 
-            def continuar_capitulo(e, accion="continuar", user_input=""):
+            def continuar_capitulo(e, capitulo=1, accion="continuar"):
                 datos_encuesta = (
                     f"Tema: {tema.value}\n"
                     f"Género: {genero.value}\n"
@@ -355,7 +445,7 @@ class NuevaHistoriaRapida:
                 )
                 estado["pantalla"] = "cargando"
                 actualizar_vista()
-                threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta, accion, user_input)).start()
+                threading.Thread(target=procesar_en_segundo_plano, args=(datos_encuesta, accion)).start()
 
 
 
@@ -369,16 +459,16 @@ class NuevaHistoriaRapida:
 
 
         # Lógica para procesar la IA y actualizar el resultado
-        def procesar_en_segundo_plano(datos_encuesta, accion, user_input=""):
+        def procesar_en_segundo_plano(datos_encuesta, accion):
             # --- Aquí llamas a tu IA/servicio de generación ---
-            respuesta = controller.procesar_mensaje_rapido(datos_encuesta, self.capitulo, accion, user_input)
+            respuesta = controller.procesar_mensaje_rapido(datos_encuesta, self.capitulo, accion)
             print(respuesta)
             # Guarda la respuesta en la variable de estado
             historia_generada["texto"] = respuesta
             historia_generada["titulo"] = "Historia generada"  # Puedes extraer un título si lo tienes
             estado["pantalla"] = "resultado"
-            self.capitulo = self.capitulo+1
-            # Actualiza la vista en el hilo principal
+            estado["fin_visible"] = self.capitulo >= 4   # NUEVO
+            self.capitulo += 1
             page.run_thread(actualizar_vista)
 
 
@@ -415,7 +505,7 @@ class NuevaHistoriaRapida:
                 page.appbar,
                 principal,
                       ],
-            bgcolor=ft.Colors.AMBER_50,
+            bgcolor=th["FONDO"],
             vertical_alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         )

@@ -283,8 +283,25 @@ class StoryStorage:
         for i in range(1, 5):  # Aseguramos que haya 4 capítulos
             num_capitulo = f"capitulo_{i}"
             capitulo = self.mongo.buscar_capitulo_guardar(num_capitulo)
-            historia += f"Capitulo {i}\nTitulo: {capitulo['Titulo']}\nContenido: {capitulo['Contenido']}\n\n\n"
+            historia += f"Capitulo {i}\nTitulo: {capitulo['Titulo']}\nContenido: {capitulo['Contenido']}\n\\n\n"
         return historia.strip()
+    
+    def guardar_historia_rapida(self):
+        self.mongo.seleccionar_coleccion("capitulos")
+        historia = ""
+        for i in range(1, 5):  # Aseguramos que haya 4 capítulos
+            num_capitulo = f"capitulo_{i}"
+            capitulo = self.mongo.buscar_capitulo_guardar(num_capitulo)
+            historia += f"Capitulo {i}\nTitulo: {capitulo['Titulo']}\nContenido: {capitulo['Contenido']}\n\\n\n"
+        return historia.strip()
+
+    def historia_a_pdf_rapida(self, nombre_archivo):
+        texto = self.guardar_historia_rapida()
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+        pdf.multi_cell(0, 10, texto)
+        pdf.output(nombre_archivo)
 
 
     def historia_a_pdf(self, nombre_archivo):

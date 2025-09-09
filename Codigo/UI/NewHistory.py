@@ -292,7 +292,7 @@ class NuevaHistoria:
 
                 spans.append(ft.TextSpan(contenido, style=style))
 
-            return ft.Text(spans=spans, selectable=True, size=20)  # <-- Añade o cambia el parámetro size aquí
+            return ft.Text(spans=spans, selectable=True, size=30)  # <-- Añade o cambia el parámetro size aquí
 
         def parse_respuesta_md(respuesta: str) -> list[ft.Text]:
             """
@@ -310,7 +310,7 @@ class NuevaHistoria:
                 if re.match(r"^(#{3,6})\s+(.*?)(\s+#{3,6})?$", linea):
                     nivel, contenido = re.findall(r"^(#{3,6})\s+(.*?)(\s+#{3,6})?$", linea)[0][:2]
                     contenido = re.sub(r"\*\*(.*?)\*\*", r"\1", contenido)  # 👈 elimina negrita Markdown
-                    tamaño = {3: 30, 4: 26, 5: 24, 6: 22}.get(len(nivel), 20)  # Cambia aquí
+                    tamaño = {3: 42, 4: 38, 5: 34, 6: 30}.get(len(nivel), 25)  # Cambia aquí
                     elementos.append(
                         ft.Text(contenido, weight=ft.FontWeight.BOLD, size=tamaño, selectable=True)
                     )
@@ -321,13 +321,13 @@ class NuevaHistoria:
             return elementos
 
 
-        def send_message(e, prompt_override=None, accion="normal", seccion="trama_e_hilo_simbolico"):
+        def send_message(e, prompt_override=None, accion="crear", seccion="trama_e_hilo_simbolico"):
             deshabilitar_botones_secciones()
             prompt_usuario = entrada.value.strip()
             prompt = prompt_override if prompt_override is not None else prompt_usuario
 
             # Guardar solo si es prompt del usuario
-            if accion == "normal" and prompt_override is None:
+            if accion == "crear" and prompt_override is None:
                 self.ultimo_prompt = prompt_usuario
             print(f"Mensaje enviado: {prompt}")
             scroll_marker = ft.Text("", key="scroll-target")
@@ -336,8 +336,6 @@ class NuevaHistoria:
             entrada.value = ""
 
             zona_carga.visible = True
-            # entrada.visible = False
-            # btn_send.visible = False
             panel_entrada.visible = False
             btn_copy.disabled = True
             lista_btn.visible = False
@@ -452,59 +450,54 @@ class NuevaHistoria:
         )
 
 
-        campo_modificar = ft.TextField(
-            hint_text="¿Que cambio quieres hacer en la sección?",
-            multiline=False,
-            autofocus=True,
-            border=ft.InputBorder.OUTLINE,
-            suffix_icon=btn_send,
-            width=400,
-            #on_submit=send_message
-        )
+        # campo_modificar = ft.TextField(
+        #     hint_text="¿Que cambio quieres hacer en la sección?",
+        #     multiline=False,
+        #     autofocus=True,
+        #     border=ft.InputBorder.OUTLINE,
+        #     suffix_icon=btn_send,
+        #     width=400,
+        #     #on_submit=send_message
+        # )
 
-        def button_accept(e):
-            page.close(modificar_dialog)
-            mensaje = campo_modificar.value.strip()  # Limpiar el campo de entrada
-            continuar_capitulo(e, prompt_override=mensaje, accion="modificar")
+        # def button_accept(e):
+        #     page.close(modificar_dialog)
+        #     mensaje = campo_modificar.value.strip()  # Limpiar el campo de entrada
+        #     continuar_capitulo(e, prompt_override=mensaje, accion="modificar")
 
-        modificar_dialog = ft.AlertDialog(
-            modal=True,
-            title=ft.Text("Modificar"),
-            content=ft.Container(
-                campo_modificar,
-                width=520,
-            ),
-            actions=[
-                ft.TextButton("Cancelar", on_click=lambda e: page.close(modificar_dialog)),
-                ft.TextButton("Aceptar", on_click=button_accept), 
-            ],
-            actions_alignment=ft.MainAxisAlignment.END
-        )
+        # modificar_dialog = ft.AlertDialog(
+        #     modal=True,
+        #     title=ft.Text("Modificar"),
+        #     content=ft.Container(
+        #         campo_modificar,
+        #         width=520,
+        #     ),
+        #     actions=[
+        #         ft.TextButton("Cancelar", on_click=lambda e: page.close(modificar_dialog)),
+        #         ft.TextButton("Aceptar", on_click=button_accept), 
+        #     ],
+        #     actions_alignment=ft.MainAxisAlignment.END
+        # )
 
-        def modificar_historia(e):
-            print("Modificar historia")
-            campo_modificar.value = ""  # Limpiar el campo de entrada
-            page.open(modificar_dialog)  # Abrir el diálogo de modificación
-            # Aquí puedes implementar la lógica para modificar la historia
+        # def modificar_historia(e):
+        #     print("Modificar historia")
+        #     campo_modificar.value = ""  # Limpiar el campo de entrada
+        #     page.open(modificar_dialog)  # Abrir el diálogo de modificación
+        #     # Aquí puedes implementar la lógica para modificar la historia
 
 
 
         def reescribir_historia(e):
-            print("Reescribir historia")
-            if self.ultimo_prompt or self.ultima_respuesta:
-                nuevo_prompt = (
-                    "No me ha gustado la respuesta anterior. A continuación te paso un resumen de la sección que has generado. "
-                    "Por favor, escribe otra vez la seccion cambiandola.\n\n"
-                    # aquí añades el resumen real
-                )
-                send_message(e, prompt_override=nuevo_prompt, accion="reescribir")
-            else:
-                print("No hay un prompt previo para reescribir.")
+            nuevo_prompt = (
+                "No me ha gustado la respuesta anterior. A continuación te paso la seccion que has generado. "
+                "Por favor escribe otra sección distinta pero manteniendo la coherencia de la propuesta inicial.\n\n"
+            )
+            send_message(e, prompt_override=nuevo_prompt, accion="reescribir", seccion=self.seccion_actual)
 
         def button_no(e):
             print("Continuamos con la historia")
             page.close(confirm_tittle)
-            send_message(e, accion="normal")
+            send_message(e, accion="crear")
 
         def button_accept(e):
             print("Añadiendo ideas o preferencias")
@@ -531,7 +524,7 @@ class NuevaHistoria:
             content=ft.Column(
                 controls=[
                     ft.Text(
-                        "Comienza tu historia con con una idea y desarrollala lo que quieras",
+                        "¿Cómo quieres que sea la historia de hoy?",
                         size=24,
                         weight=ft.FontWeight.BOLD,
                         color=th["TEXT"],
@@ -550,14 +543,17 @@ class NuevaHistoria:
             page.open(confirm_tittle)
             # Aquí puedes implementar la lógica para continuar la historia
 
+        # btn_modificar = ft.ElevatedButton("Modificar", on_click=lambda e: mostrar_popup_modificar(self.seccion_actual)),
+        # btn_reescribir = ft.ElevatedButton("Reescribir", on_click=lambda e: reescribir_historia(e)),
+
+        btn_modificar = ft.ElevatedButton("Modificar", on_click=lambda e: mostrar_popup_modificar(self.seccion_actual))
+        btn_reescribir = ft.ElevatedButton("Reescribir", on_click=lambda e: reescribir_historia(e))
+
         lista_btn = ft.Row(
-            [
-            ft.ElevatedButton("Modificar", on_click=lambda e: modificar_historia(e)),
-            ft.ElevatedButton("Reescribir", on_click=lambda e: reescribir_historia(e)),
-            ],
+            [btn_modificar, btn_reescribir],
             spacing=10,
             alignment=ft.MainAxisAlignment.START,
-            visible=False  # 👈 este es el parámetro para ocultar el Row
+            visible=False
         )
 
         # helper para que las celdas tengan el mismo ancho
@@ -1107,20 +1103,56 @@ class NuevaHistoria:
             popup_caracteristicas.data = seccion
             page.open(popup_caracteristicas)
 
+        def on_text_change(e):
+            campo_modificar2.value = e.control.value
+
+        campo_modificar2 = ft.TextField(
+            hint_text="¿Que modificación quieres realizar?",
+            multiline=True,
+            width=400,
+            autofocus=True,
+            on_change=on_text_change
+        )
+
+        def mostrar_popup_modificar(seccion):
+            campo_modificar2.value = ""
+            campo_modificar2.label = f"Modificar {titulo_seccion_text(seccion)}"
+            popup_modificar.data = seccion
+            page.open(popup_modificar)
 
 
+        def aceptar_modificacion(e):
+            modificacion = ""
+            seccion = popup_modificar.data
+            modificacion = campo_modificar2.value.strip()
+            page.close(popup_modificar)
+
+            # Enviamos y PASAMOS 'seccion' para actualizar el título al final
+            send_message(e, prompt_override=modificacion, accion="modificar", seccion=seccion)
+
+        popup_modificar = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("Modificar sección"),
+            content=campo_modificar2,
+            actions=[
+                ft.TextButton("Cancelar", on_click=lambda e: page.close(popup_modificar)),
+                ft.TextButton("Aceptar", on_click=lambda e: aceptar_modificacion(e)),
+            ],
+            actions_alignment=ft.MainAxisAlignment.END
+        )
 
         def aceptar_caracteristicas(e):
             seccion = self.seccion_pendiente or popup_caracteristicas.data
+            caracteristicas = ""
             caracteristicas = campo_caracteristicas.value.strip()
             page.close(popup_caracteristicas)
 
-            prompt = f"Quiero trabajar la sección '{seccion}'."
-            if caracteristicas:
-                prompt += f" Características especiales: {caracteristicas}"
+            # prompt = f"Quiero trabajar la sección '{seccion}'."
+            # if caracteristicas:
+            #     prompt += f" Características especiales: {caracteristicas}"
 
             # Enviamos y PASAMOS 'seccion' para actualizar el título al final
-            send_message(e, prompt_override=prompt, seccion=seccion)
+            send_message(e, prompt_override=caracteristicas, seccion=seccion)
 
         def actualizar_boton_fin():
             # Estamos en modo escritura y queremos que, si cap==4, aparezca "Finalizar"
@@ -1146,7 +1178,10 @@ class NuevaHistoria:
             btn_mundo_gen.visible = False
             btn_personajes_gen.visible = False
             btn_estructura_gen.visible = False
+            btn_modificar.visible = False
+            btn_reescribir.visible = False
             btn_continuar_historia.visible = True
+            
             actualizar_boton_fin()
             prompt = f"Vamos a escribir el capitulo {self.capitulo_actual}"
             send_message(e, prompt_override=prompt, seccion="escritura")
@@ -1181,11 +1216,12 @@ class NuevaHistoria:
             title=ft.Text("Características especiales"),
             content=campo_caracteristicas,
             actions=[
-                ft.TextButton("Aceptar", on_click=lambda e: aceptar_caracteristicas(e)),
                 ft.TextButton("Cancelar", on_click=lambda e: page.close(popup_caracteristicas)),
+                ft.TextButton("Aceptar", on_click=lambda e: aceptar_caracteristicas(e)),
             ],
             actions_alignment=ft.MainAxisAlignment.END
         )
+
 
         def deshabilitar_botones_secciones():
             for b in [

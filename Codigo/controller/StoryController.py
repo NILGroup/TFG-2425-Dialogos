@@ -45,6 +45,10 @@ class StoryController:
         self.storage.historia_a_pdf(nombre_archivo)
 
 
+    def guardar_en_pdf_rapida(self, nombre_archivo):
+        self.storage.historia_a_pdf_rapida(nombre_archivo)
+
+
     def next_chapter(self):
         self.chapter += 1
 
@@ -126,7 +130,7 @@ class StoryController:
             print("La seccion es: ", seccion)
             self.contexto = self.storage.buscar_dependencias_bd(seccion)
             print("Contexto: ", self.contexto)
-            mensaje = f"{self.contexto}\n\nAhora toca hacer la seccion: {seccion}\nCaracteristicas: {user_input}"
+            mensaje = f"{self.contexto}\n\nAhora toca hacer la seccion: {seccion}\nCaracteristicas para la sección: {user_input}"
             print("Mensaje enviado a la IA: ", mensaje)
             ai_response = get_ai_response([{"role": "user", "content": mensaje}])
             self.estado_secciones[seccion] = True
@@ -151,18 +155,18 @@ class StoryController:
         else:
             self.contexto = self.storage.buscar_dependencias_bd(seccion)
             print("Contexto: ", self.contexto)
-            resumen_seccion = self.storage.obtener_resumen(seccion)
-            mensaje = f"\n\nCONTENIDO DEL MENSAJE\n\n{self.contexto}\n{user_input}\nLa seccion antigua es:{resumen_seccion}\nPrompt:{ultimo_prompt}Cambia la seccion {self.seccion}\n"
+            seccion_antigua = self.storage.obtener_contenido_seccion(seccion)
+            mensaje = f"\n\nCONTENIDO DEL MENSAJE\n\n{self.contexto}\n{user_input}\nLa seccion antigua es:{seccion_antigua}\nPrompt:{ultimo_prompt}Cambia la seccion {seccion}\n"
             print(mensaje)
             ai_response = get_ai_response([{"role": "user", "content": mensaje}])
 
         return ai_response
 
     def accion_actualizar(self, user_input, seccion):
+        print(f"************ MODO ACTUALIZAR ************")
         print(f"Sección actual: {seccion}")
-        nueva_seccion = seccion
+        #nueva_seccion = seccion
         print(f"Estado de secciones: {self.estado_secciones}")
-        print(f"Nueva seccion: {nueva_seccion}")
         if seccion == "escritura":
             print("Esta desactivada la actualizacion de capitulos")
             self.contexto = self.storage.crear_contexto_capitulo(self.chapter)
@@ -173,8 +177,10 @@ class StoryController:
             self.storage.guardar_capitulo(ai_response)
             self.next_chapter()
         else:
-            contenido_seccion = self.storage.obtener_contenido_seccion(nueva_seccion)
-            mensaje = f"\n\nCONTENIDO DEL MENSAJE\n\n{contenido_seccion}\nQuiero realizar el siguiente cambio: {user_input}\nAhora toca hacer la seccion: {seccion}"
+            self.contexto = self.storage.buscar_dependencias_bd(seccion)
+            contenido_seccion = self.storage.obtener_contenido_seccion(seccion)
+            #mensaje = f"Contexto de la historia:\n{self.contexto}\n"
+            mensaje = f"\nContexto de la historia:\n{self.contexto}\nSección actual\n\n{contenido_seccion}\nQuiero realizar el siguiente cambio: {user_input}\nModifica la sección anterior para que incluya este cambio. La seccion es: {seccion}\n"
             print("-----------------", mensaje)
             ai_response = get_ai_response([{"role": "user", "content": mensaje}])
 
@@ -188,8 +194,8 @@ class StoryController:
             ai_response = get_ai_response_fast([{"role": "user", "content": user_input}])
         else:
             print(f"Accion: {accion}")
-            if accion == "normal":
-                print("Accion normal")
+            if accion == "crear":
+                print("Accion crear")
                 ai_response = self.accion_normal(user_input, seccion)
             elif accion == "reescribir":
                 print("Accion reescribir")
@@ -200,7 +206,7 @@ class StoryController:
         self.guardar_datos(ai_response, seccion)
         return ai_response
     
-    def procesar_mensaje_rapido(self, datos_encuesta, capitulo, accion, user_input):
+    def procesar_mensaje_rapido(self, datos_encuesta, capitulo, accion):
         if accion == "continuar":
             contexto = self.storage.contexto_capitulo_rapido(capitulo)
             if capitulo == 4:
@@ -209,12 +215,6 @@ class StoryController:
                 mensaje = f"La información de la historia es:\n{datos_encuesta}\nLos capítulos anteriores son:\n{contexto}\nContinúa la historia con el capítulo {capitulo}"
 
             print(f"------------- MENSAJE --------------\n\n{mensaje}")
-        elif accion == "modificar":
-            capitulo_actual = self.storage.capitulo_fast(capitulo)
-            mensaje = f"Este es el capitulo:\n{capitulo_actual}\nQuiero modificar esto:{user_input}\n\nVuelve a escribir el capitulo: {capitulo_actual}\n\n"
-        else:
-            capitulo_actual = self.storage.capitulo_fast(capitulo)
-            mensaje = f"Este es el capitulo:\n{capitulo}\nNo me ha gustado quiero que lo cambies. Escribe el capitulo: {capitulo}\n\n"
 
         ai_response = get_ai_response_fast([{"role": "user", "content": mensaje}])
         ai_json = generar_JSON_capitulo_mongo(ai_response)

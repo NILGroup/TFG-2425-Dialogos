@@ -128,7 +128,7 @@ class Home:
                     ft.Text("Modo rápido", size=20, weight=ft.FontWeight.BOLD)
                 ], spacing=10),
                 ft.Text("Crea una historia en segundos con pocos datos", size=15, color=ft.Colors.BLUE_GREY_600),
-                ft.ElevatedButton("Empezar rápido", bgcolor=th["NARANJA"], color=ft.Colors.WHITE, on_click=lambda e: page.open(dlg_rapido))
+                ft.ElevatedButton("Comenzar rápido", bgcolor=th["NARANJA"], color=ft.Colors.WHITE, on_click=lambda e: page.open(dlg_rapido))
             ], spacing=10),
             padding=20,
             bgcolor=ft.Colors.WHITE,
@@ -144,7 +144,7 @@ class Home:
                     ft.Text("Modo detallado", size=20, weight=ft.FontWeight.BOLD)
                 ], spacing=10),
                 ft.Text("Personaliza paso a paso cada aspecto de tu historia", size=15, color=ft.Colors.BLUE_GREY_600),
-                ft.ElevatedButton("Empezar detallado", bgcolor=ft.Colors.GREEN_400, color=ft.Colors.WHITE, on_click=lambda e: page.open(dlg_detallado))
+                ft.ElevatedButton("Comenzar detallado", bgcolor=ft.Colors.GREEN_400, color=ft.Colors.WHITE, on_click=lambda e: page.open(dlg_detallado))
             ], spacing=10),
             padding=20,
             bgcolor=ft.Colors.WHITE,
@@ -199,7 +199,7 @@ class Home:
                             content=ft.Column(
                                 [
                                     ft.Text(
-                                        "Mis historias",
+                                        "Mis historIAs",
                                         size=52,
                                         weight=ft.FontWeight.BOLD,
                                         color=ft.Colors.BLUE_GREY_900,
