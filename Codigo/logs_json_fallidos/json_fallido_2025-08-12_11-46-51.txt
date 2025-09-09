@@ -1,7 +1,0 @@
-❌ ERROR DE DECODIFICACIÓN JSON:
-Extra data: line 1 column 11 (char 10)
-
-🧾 TEXTO RECIBIDO:
-"Capitulo": 1,
-"Nombre": "La Búsqueda Comienza",
-"Contenido": "Eryndor Thorne, un joven aventurero de 25 años, se encontraba en la ciudad de Eldrador, en el Hemisferio de la Luz. Era un día como cualquier otro, con el sol brillando en el cielo y una brisa suave que mecía las hojas de los árboles. Eryndor se encontraba en el Mercado del Distrito del Mercado, admirando las mercancías expuestas en los puestos. De repente, una figura misteriosa se acercó a él. -\"Necesito hablar contigo, Eryndor Thorne,\"- dijo la figura, cubriendo su rostro con una capucha. Eryndor se sintió intrigado y se acercó a la figura. -\"¿Qué quieres?\"- preguntó Eryndor. -\"Tengo un trabajo para ti,\"- respondió la figura. -\"Necesito que recuperes un objeto valioso en una cueva abandonada en el Monte de la Luz. El objeto es un fragmento del Cristal de Luz, un artefacto legendario que ha sido perdido durante siglos.\" Eryndor se sintió atraído por la aventura y aceptó el trabajo. La figura le dio una bolsa con oro y una mapa que llevaba a la cueva. -\"Ten cuidado, Eryndor,\"- advirtió la figura. -\"La cueva no es un lugar seguro. Hay rumores de que la Orden del Eclipse también busca el fragmento del Cristal de Luz.\" Eryndor se despidió de la figura y se dirigió hacia la cueva, listo para enfrentar cualquier desafío que se le presentara."

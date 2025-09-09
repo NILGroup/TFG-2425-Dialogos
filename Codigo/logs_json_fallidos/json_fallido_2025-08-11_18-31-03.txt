@@ -1,7 +1,0 @@
-❌ ERROR DE DECODIFICACIÓN JSON:
-Expecting ',' delimiter: line 3 column 317 (char 354)
-
-🧾 TEXTO RECIBIDO:
-{
-"Seccion": "descripcion_del_mundo",
-"Resumen": "La historia se desarrolla en Puerto del Cielo, un pueblo costero acogedor con edificios coloridos y un ambiente relajado y festivo. La playa de La Costa del Sol es famosa por sus aguas cristalinas y arena blanca, y el pueblo tiene una cultura muy unida y festiva, con influencia de la música y la danza."

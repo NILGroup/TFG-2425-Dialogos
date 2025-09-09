@@ -1,7 +1,0 @@
-❌ ERROR DE DECODIFICACIÓN JSON:
-Expecting value: line 1 column 1 (char 0)
-
-🧾 TEXTO RECIBIDO:
-Me gusta la descripción del mundo, especialmente la estructura basada en los cuatro elementos y la introducción de la Sombra Devoradora como una amenaza central. Está bien detallado y ofrece un buen marco para la historia.
-
-¿Te gustaría seguir con **3. Personajes principales** o prefieres modificar algo de la descripción del mundo?
