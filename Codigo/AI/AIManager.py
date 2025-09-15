@@ -2,8 +2,14 @@ import re
 from groq import Groq
 import AI.Utils as Utils
 import json
+import os
+from dotenv import load_dotenv
 
-
+#Tiene que crear una API_Key en Groq
+#Para utilizar la variable de entorno cree un archivo .env con: GROQ_API_KEY=tu_clave_aqui
+#Instala la libreria pip install python-dotenv
+load_dotenv()
+groq_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=groq_key)
 
 PROMPT_INICIAL = Utils.PROMPT_DETALLADO
@@ -147,3 +153,4 @@ def generar_resumen(ai_response:str)->str:
 
 
     return resumen_JSON
+
