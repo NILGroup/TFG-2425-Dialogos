@@ -3,9 +3,7 @@ from groq import Groq
 import AI.Utils as Utils
 import json
 
-groq_key = "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"
-#groq_key = "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"
-#groq_key = "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"
+
 client = Groq(api_key=groq_key)
 
 PROMPT_INICIAL = Utils.PROMPT_DETALLADO
@@ -146,5 +144,6 @@ def generar_resumen(ai_response:str)->str:
     ]
 
     resumen_JSON = get_ai_response_others(resumen_prompt)
+
 
     return resumen_JSON
